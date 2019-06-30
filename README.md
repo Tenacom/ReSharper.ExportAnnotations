@@ -1,5 +1,5 @@
 ![License](https://img.shields.io/github/license/rdeago/resharper-exportannotations.svg)
-![NuGet downloads](https://img.shields.io/nuget/dt/ReSharper.ExportAnnotations.svg)
+![NuGet downloads](https://img.shields.io/nuget/dt/ReSharper.ExportAnnotations.Task.svg)
 
 ![GitHub downloads](https://img.shields.io/github/downloads/rdeago/resharper-exportannotations/total.svg)
 ![Release date](https://img.shields.io/github/release-date/rdeago/resharper-exportannotations.svg)

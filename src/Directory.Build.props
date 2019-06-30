@@ -1,0 +1,41 @@
+<Project>
+
+  <!-- Common project / package metadata -->
+  <PropertyGroup>
+    <Product>ReSharper.ExportAnnotations</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+    <Authors>rdeago</Authors>
+    <Owners>rdeago</Owners>
+    <PackageTags>cecil;resharper;annotations;msbuild</PackageTags>
+    <PackageProjectUrl>https://github.com/rdeago/resharper-exportannotations</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rdeago/resharper-exportannotations.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <!-- Copyright and license -->
+  <PropertyGroup>
+    <Copyright>Copyright (c) 2018-2019 Riccardo De Agostini</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Link="LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <!-- Common build options -->
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Common packaging options -->
+  <PropertyGroup>
+    <PackageId>$(AssemblyName)</PackageId>
+    <PackageVersion>$(InformationalVersion)</PackageVersion>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' != 'Release'">false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>

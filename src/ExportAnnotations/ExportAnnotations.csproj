@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.0;net471</TargetFrameworks>
+    <Description>Command-line utility to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
+    <!-- Do not generate a package for this project (not directly at least)-->
+    <IsPackable>false</IsPackable>
+    <TrimUnusedFiles>true</TrimUnusedFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="All" />
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Packaging.Tools.Trimming" Version="1.1.0-preview1-26619-01" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReSharper.ExportAnnotations.Core\ReSharper.ExportAnnotations.Core.csproj" />
+  </ItemGroup>
+
+</Project>

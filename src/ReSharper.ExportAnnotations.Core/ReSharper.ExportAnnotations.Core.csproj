@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <RootNamespace>ReSharper.ExportAnnotations</RootNamespace>
+    <Description>Utility library to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cecil.XmlDocNames" Version="1.0.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="All" />
+    <PackageReference Include="Mono.Cecil" Version="0.10.4" />
+  </ItemGroup>
+
+</Project>

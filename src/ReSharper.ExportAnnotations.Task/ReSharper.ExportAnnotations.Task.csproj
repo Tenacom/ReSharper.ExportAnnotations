@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <Description>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
+    <IsPackable>true</IsPackable>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <MinClientVersion>2.8</MinClientVersion> <!-- Because of developmentDependency -->
+  </PropertyGroup>
+
+  <!-- Reference the tool's project so it builds before this one -->
+  <ItemGroup>
+    <ProjectReference Include="..\ExportAnnotations\ExportAnnotations.csproj" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!--
+    ***********************************
+    *** NUGET PACKING CUSTOMIZATION ***
+    ***********************************
+  -->
+  <PropertyGroup>
+    <!-- Disable package analysis to avoid NuGet warnings during pack -->
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <!-- Don't include build output in package (this project is not a real program) -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <!-- Do not include dependencies in nuspec (otherwise the package would be limited to .NETCoreapp 2.0 platform only) -->
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
+
+  <!-- Change all references to development-only... -->
+  <ItemGroup>
+    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
+    <ProjectReference Update="@(ProjectReference)" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!--
+    *****************************
+    *** CONTENT CUSTOMIZATION ***
+    *****************************
+  -->
+
+  <!-- Don't include .props and .targets files as None items; they are content and should be packed -->
+  <PropertyGroup>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+  </PropertyGroup>
+
+  <!-- Define what should be in package and where -->
+  <ItemGroup>
+    <!-- Include .props and .targets files-->
+    <Content Include="build\*" PackagePath="build\" />
+    <Content Include="buildCrossTargeting\*" PackagePath="buildCrossTargeting\" />
+    <!-- Include compiled tool -->
+    <Content Include="..\ExportAnnotations\bin\$(Configuration)\**\*" PackagePath="tools\" Visible="false" />
+    <!-- Don't include publish folder -->
+    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\publish\*" />
+    <!-- Don't include .dev.json files -->
+    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.dev.json" />
+    <!-- Don't include .pdb files in Release -->
+    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.pdb" Condition="'$(Configuration)' == 'Release'"/>
+  </ItemGroup>
+
+</Project>

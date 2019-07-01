@@ -22,10 +22,12 @@ Code annotations are cool, but once you've wrapped your library in a nice NuGet 
 
 Let's be honest: all three options above suck. Either you end up with more code to build and maintain, or you have to distribute an  utterly useless assembly, or you just give up a big part of what makes ReSharper worth its price (not to mention loading time).
 
+A fourth option would be to use [Fody](https://github.com/Fody/Fody) with the [JetBrainsAnnotations.Fody](https://github.com/tom-englert/JetBrainsAnnotations.Fody) plugin, that does exactly what this task does. Which is fine, if you _already_ use Fody; otherwise, you have to create a configuration file for it, then reference _two_ packages (Fody itself and the plugin). I've never tried it: it most probably works fine. I was looking for a simpler solution, though, so here it is.
+
 ## The solution
 ```xml
 <!-- YourLibrary.csproj -->
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk"> <!-- It works on legacy projects too (e.g. WinForms control libraries) -->
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework> <!-- Actually you can use any TFM -->
@@ -37,7 +39,7 @@ Let's be honest: all three options above suck. Either you end up with more code 
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="All" /> <!-- Not a transient dependency -->
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="All" /> <!-- Will not become a transient dependency -->
     <PackageReference Include="ReSharper.ExportAnnotations" Version="1.0.0" PrivateAssets="All" /> <!-- Only used during build -->
   </PropertyGroup>
 
@@ -47,7 +49,7 @@ Let's be honest: all three options above suck. Either you end up with more code 
 That's all you need to do. Here's what happens when you build your project:
 * the `JETBRAINS_ANNOTATIONS` constant is automatically defined;
 * just after the compiler runs, your compiled assembly is scanned for ReSharper annotations;
-* all annotations in exposed types and member of exposed types are exported in an [external annotations file](https://www.jetbrains.com/help/resharper/Code_Analysis__External_Annotations.html);
+* all annotations of exposed types and members of exposed types are exported in an [external annotations file](https://www.jetbrains.com/help/resharper/Code_Analysis__External_Annotations.html);
 * the external annotations file is part of the build output, so it is also included in your NuGet package;
 * code annotations attributes, as well as the reference to `JetBrains.Annotations.dll`, are stripped from your assembly.
 
@@ -63,6 +65,7 @@ Now, when you reference your library from another project, ReSharper will automa
       <StripJetBrainsAnnotations Condition="'$(Configuration)' != 'Release'">false</StripJetBrainsAnnotations>
     </PropertyGroup>
     ```
+    Be aware that this way your assembly is still referencing `JetBrains.Annotations.dll`.
 * This task only works on `.csproj` and `.vbproj` project files.
 ---
 

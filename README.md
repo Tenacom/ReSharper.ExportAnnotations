@@ -1,11 +1,11 @@
-![License](https://img.shields.io/github/license/rdeago/resharper-exportannotations.svg)
-![NuGet downloads](https://img.shields.io/nuget/dt/ReSharper.ExportAnnotations.Task.svg)
+[![License](https://img.shields.io/github/license/rdeago/resharper-exportannotations.svg)](https://github.com/rdeago/resharper-exportannotations/blob/master/LICENSE)
+[![NuGet downloads](https://img.shields.io/nuget/dt/ReSharper.ExportAnnotations.Task.svg)](https://www.nuget.org/packages/ReSharper.ExportAnnotations.Task/)
 
-![GitHub downloads](https://img.shields.io/github/downloads/rdeago/resharper-exportannotations/total.svg)
-![Release date](https://img.shields.io/github/release-date/rdeago/resharper-exportannotations.svg)
-![Last commit](https://img.shields.io/github/last-commit/rdeago/resharper-exportannotations.svg)
-![Open issues](https://img.shields.io/github/issues-raw/rdeago/resharper-exportannotations.svg)
-![Closed issues](https://img.shields.io/github/issues-closed-raw/rdeago/resharper-exportannotations.svg)
+[![GitHub downloads](https://img.shields.io/github/downloads/rdeago/resharper-exportannotations/total.svg)](https://github.com/rdeago/resharper-exportannotations/releases)
+[![Release date](https://img.shields.io/github/release-date/rdeago/resharper-exportannotations.svg)](https://github.com/rdeago/resharper-exportannotations/releases)
+[![Last commit](https://img.shields.io/github/last-commit/rdeago/resharper-exportannotations.svg)](https://github.com/rdeago/resharper-exportannotations/commits/master)
+[![Open issues](https://img.shields.io/github/issues-raw/rdeago/resharper-exportannotations.svg)](https://github.com/rdeago/resharper-exportannotations/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+[![Closed issues](https://img.shields.io/github/issues-closed-raw/rdeago/resharper-exportannotations.svg)](https://github.com/rdeago/resharper-exportannotations/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc)
 
 If you find this project useful, please **:star: star it**. Thank you!
 

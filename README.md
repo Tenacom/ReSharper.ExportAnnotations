@@ -40,7 +40,7 @@ A fourth option would be to use [Fody](https://github.com/Fody/Fody) with the [J
 
   <PropertyGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="All" /> <!-- Will not become a transient dependency -->
-    <PackageReference Include="ReSharper.ExportAnnotations" Version="1.0.0" PrivateAssets="All" /> <!-- Only used during build -->
+    <PackageReference Include="ReSharper.ExportAnnotations.Task" Version="1.0.0" PrivateAssets="All" /> <!-- Only used during build -->
   </PropertyGroup>
 
 </Project>

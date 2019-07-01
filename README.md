@@ -57,16 +57,25 @@ Now, when you reference your library from another project, ReSharper will automa
 
 ## Caveats
 
-* If you build under a non-Windows operating system, the process of stripping annotations will also strip away debug symbols from your assembly. This is a limitation of the [Mono.Cecil](https://github.com/jbevain/cecil) library. You may want to only strip annotations in Release mode, like this:
-    ```xml
-    <PropertyGroup>
-      <ExportJetBrainsAnnotations>true</ExportJetBrainsAnnotations>
-      <StripJetBrainsAnnotations Condition="'$(Configuration)' == 'Release'">true</StripJetBrainsAnnotations>
-      <StripJetBrainsAnnotations Condition="'$(Configuration)' != 'Release'">false</StripJetBrainsAnnotations>
-    </PropertyGroup>
-    ```
-    Be aware that this way your assembly is still referencing `JetBrains.Annotations.dll`.
-* This task only works on `.csproj` and `.vbproj` project files.
+### Building under Non-Windows operating systems
+If you build under a non-Windows operating system, the process of stripping annotations will also strip away debug symbols from your assembly. This is a limitation of the [Mono.Cecil](https://github.com/jbevain/cecil) library. You may want to only strip annotations in Release mode, like this:
+```xml
+<PropertyGroup>
+  <ExportJetBrainsAnnotations>true</ExportJetBrainsAnnotations>
+  <StripJetBrainsAnnotations Condition="'$(Configuration)' == 'Release'">true</StripJetBrainsAnnotations>
+  <StripJetBrainsAnnotations Condition="'$(Configuration)' != 'Release'">false</StripJetBrainsAnnotations>
+</PropertyGroup>
+```
+Be aware that this way your assembly is still referencing `JetBrains.Annotations.dll`.
+
+### Supported project types
+
+This task has been tested on `.csproj` project files, both "old-style" (no SDK) and using `Microsoft.NET.Sdk`.
+
+It may or may not work with other SDKs.
+
+You should have no problems with `.vbproj` projects, other than the limitations stated above. Projects in languages other than C# and VB are currently not supported.
+
 ---
 
 *Disclaimer:* The author of this library is in no way affiliated to [JetBrains s.r.o.](https://www.jetbrains.com/) (the makers of ReSharper) other than being a satisfied cutomer.

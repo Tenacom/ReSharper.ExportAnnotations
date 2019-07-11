@@ -61,11 +61,13 @@ Now, when you reference your library from another project, ReSharper will automa
 ## Compatibility
 
 In short, if you use MSBuild, you can use this task.
+
 |         | .NET Framework | Mono  | .NET Core |
 | :------ | :------------: | :---: | :-------: |
 | Windows | Yes            | Yes   | Yes       |
 | OS/X    | _(n/a)_        | Yes   | Yes       |
 | Linux   | _(n/a)_        | Yes   | Yes       |
+
 ## Caveats
 
 ### Building under Non-Windows operating systems

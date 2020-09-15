@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/2.0.1">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>true</IsPackable>
     <Summary>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Summary>
     <Description>Documentation is available here: https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/master/README.md</Description>

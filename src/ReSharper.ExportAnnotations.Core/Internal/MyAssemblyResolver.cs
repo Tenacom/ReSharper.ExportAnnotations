@@ -10,8 +10,8 @@ namespace ReSharper.ExportAnnotations.Internal
     {
         #region Private data
 
-        static readonly IEnumerable<string> _windowsRuntimeExtensions = new[] { ".winmd", ".dll" };
-        static readonly IEnumerable<string> _nonWindowsRuntimeExtensions = new[] { ".exe", ".dll" };
+        static readonly IEnumerable<string> WindowsRuntimeExtensions = new[] { ".winmd", ".dll" };
+        static readonly IEnumerable<string> NonWindowsRuntimeExtensions = new[] { ".exe", ".dll" };
 
 readonly IReadOnlyList<string> _referencedLibPaths;
 
@@ -44,7 +44,7 @@ readonly IReadOnlyList<string> _referencedLibPaths;
 
         public override AssemblyDefinition Resolve([NotNull] AssemblyNameReference name, [NotNull] ReaderParameters parameters)
         {
-            var extensions = name.IsWindowsRuntime ? _windowsRuntimeExtensions : _nonWindowsRuntimeExtensions;
+            var extensions = name.IsWindowsRuntime ? WindowsRuntimeExtensions : NonWindowsRuntimeExtensions;
             var paths = _referencedLibPaths
                 .Where(File.Exists)
                 .Where(p => Path.GetFileNameWithoutExtension(p) == name.Name)

@@ -41,7 +41,7 @@
     <!-- Don't include .dev.json files -->
     <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.dev.json" />
     <!-- Don't include .pdb files in Release -->
-    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.pdb" Condition="'$(Configuration)' == 'Release'"/>
+    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.pdb" Condition="'$(Configuration)' == 'Release'" />
   </ItemGroup>
 
 </Project>

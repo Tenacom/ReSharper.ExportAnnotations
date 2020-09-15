@@ -77,22 +77,20 @@ namespace ReSharper.ExportAnnotations
                 ReadSymbols = true
             };
 
-            using (var assembly = AssemblyDefinition.ReadAssembly(assemblyPath, readerParameters))
+            using var assembly = AssemblyDefinition.ReadAssembly(assemblyPath, readerParameters);
+            if (parameters.ExportAnnotations)
+                ExportAnnotations(assembly,
+                    parameters.XmlPath ?? Path.ChangeExtension(assemblyPath, ".ExternalAnnotations.xml"));
+
+            if (parameters.StripAnnotations)
+                StripAnnotations(assembly);
+
+            if (parameters.WillSaveAssembly)
             {
-                if (parameters.ExportAnnotations)
-                    ExportAnnotations(assembly,
-                        parameters.XmlPath ?? Path.ChangeExtension(assemblyPath, ".ExternalAnnotations.xml"));
-
-                if (parameters.StripAnnotations)
-                    StripAnnotations(assembly);
-
-                if (parameters.WillSaveAssembly)
-                {
-                    var writerParameters = new WriterParameters {
-                        WriteSymbols = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) // Symbol writer uses COM Interop, thus is Windows-only
-                    };
-                    assembly.Write(writerParameters);
-                }
+                var writerParameters = new WriterParameters {
+                    WriteSymbols = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) // Symbol writer uses COM Interop, thus is Windows-only
+                };
+                assembly.Write(writerParameters);
             }
         }
 

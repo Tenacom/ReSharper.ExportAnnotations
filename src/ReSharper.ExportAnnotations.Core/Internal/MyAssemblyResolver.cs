@@ -32,8 +32,7 @@ readonly IReadOnlyList<string> _referencedLibPaths;
 
         AssemblyDefinition GetAssembly([NotNull] string file, [NotNull] ReaderParameters parameters)
         {
-            if (parameters.AssemblyResolver == null)
-                parameters.AssemblyResolver = this;
+            parameters.AssemblyResolver ??= this;
 
             return ModuleDefinition.ReadModule(file, parameters).Assembly;
         }

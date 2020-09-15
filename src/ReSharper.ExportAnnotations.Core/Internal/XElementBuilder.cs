@@ -24,7 +24,7 @@ namespace ReSharper.ExportAnnotations.Internal
         public XElement Element { get; private set; }
 
         [NotNull]
-        public XElement EnsureElement() => Element ?? (Element = new XElement(Tag, new XAttribute(NameAttribute, Name)));
+        public XElement EnsureElement() => Element ??= new XElement(Tag, new XAttribute(NameAttribute, Name));
 
         [NotNull]
         public XElementBuilder AddRange([NotNull] IEnumerable<XElement> children)

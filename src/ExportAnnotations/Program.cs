@@ -10,7 +10,7 @@ namespace ExportAnnotations
 {
     class Program
     {
-        public static int Main(string[] args) => CommandLineApplication.Execute<Program>(args);
+        public static int Main([NotNull] string[] args) => CommandLineApplication.Execute<Program>(args);
 
         [Argument(0, "assemblyPath", Description = "Full path of the compiled assembly")]
         [Required]

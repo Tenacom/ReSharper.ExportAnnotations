@@ -1,7 +1,7 @@
 ﻿<Project InitialTargets="_TenacomExportAnnotations_CheckSupport">
 
   <PropertyGroup>
-    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <MSBuildAllProjects Condition="'$(MSBuildToolsVersion)' != 'Current'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
 
   <!-- Build command line according to which kind of runtime MSBuild is running in -->

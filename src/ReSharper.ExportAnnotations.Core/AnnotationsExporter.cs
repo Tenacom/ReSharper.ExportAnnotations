@@ -63,7 +63,7 @@ namespace ReSharper.ExportAnnotations
             if (assemblyPath == null)
                 throw new ArgumentNullException(nameof(assemblyPath));
 
-            parameters = parameters ?? new AnnotationsExporterParameters();
+            parameters ??= new AnnotationsExporterParameters();
 
             var assemblyResolver = new MyAssemblyResolver(assemblyPath, parameters.Libraries);
             foreach (var directory in parameters.AdditionalSearchDirectories)

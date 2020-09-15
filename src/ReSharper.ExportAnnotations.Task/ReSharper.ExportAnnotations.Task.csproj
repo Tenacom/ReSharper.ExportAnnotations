@@ -33,7 +33,7 @@
   <ItemGroup>
     <!-- Include .props and .targets files-->
     <Content Include="build\*" PackagePath="build\" />
-    <Content Include="buildCrossTargeting\*" PackagePath="buildCrossTargeting\" />
+    <Content Include="buildMultiTargeting\*" PackagePath="buildMultiTargeting\" />
     <!-- Include compiled tool -->
     <Content Include="..\ExportAnnotations\bin\$(Configuration)\**\*" PackagePath="tools\" Visible="false" />
     <!-- Don't include publish folder -->

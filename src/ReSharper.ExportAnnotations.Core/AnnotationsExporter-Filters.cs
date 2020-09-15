@@ -10,7 +10,7 @@ namespace ReSharper.ExportAnnotations
     {
         #region Private data
 
-        static readonly IReadOnlyList<string> _nonExportableAttributeNames = new[] {
+        static readonly IReadOnlyList<string> NonExportableAttributeNames = new[] {
             "AspMvcSuppressViewErrorAttribute",
             "LocalizationRequiredAttribute",
             "MeansImplicitUseAttribute",
@@ -25,7 +25,7 @@ namespace ReSharper.ExportAnnotations
 
         static bool IsExportableJetBrainsAnnotation([NotNull] CustomAttribute attribute)
             => attribute.AttributeType.Namespace == "JetBrains.Annotations"
-            && !_nonExportableAttributeNames.Contains(attribute.AttributeType.Name, StringComparer.Ordinal);
+            && !NonExportableAttributeNames.Contains(attribute.AttributeType.Name, StringComparer.Ordinal);
 
         static bool IsExportedType([NotNull] TypeDefinition type)
         {

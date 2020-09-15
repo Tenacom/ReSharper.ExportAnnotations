@@ -1,11 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.Build.NoTargets/2.0.1">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
-    <Description>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
     <IsPackable>true</IsPackable>
+    <Summary>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Summary>
+    <Description>Documentation is available here: https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/master/README.md</Description>
+    <PackageTags>build;msbuild</PackageTags>
+    <PackageType>MSBuildSdk</PackageType>
     <DevelopmentDependency>true</DevelopmentDependency>
+    <Serviceable>true</Serviceable>
     <MinClientVersion>2.8</MinClientVersion> <!-- Because of developmentDependency -->
   </PropertyGroup>
 
@@ -14,25 +17,6 @@
     <ProjectReference Include="..\ExportAnnotations\ExportAnnotations.csproj" PrivateAssets="All" />
   </ItemGroup>
 
-  <!--
-    ***********************************
-    *** NUGET PACKING CUSTOMIZATION ***
-    ***********************************
-  -->
-  <PropertyGroup>
-    <!-- Disable package analysis to avoid NuGet warnings during pack -->
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-    <!-- Don't include build output in package (this project is not a real program) -->
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <!-- Do not include dependencies in nuspec (otherwise the package would be limited to .NETCoreapp 2.0 platform only) -->
-    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-  </PropertyGroup>
-
-  <!-- Change all references to development-only... -->
-  <ItemGroup>
-    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
-    <ProjectReference Update="@(ProjectReference)" PrivateAssets="All" />
-  </ItemGroup>
 
   <!--
     *****************************

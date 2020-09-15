@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.0;net471</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;net471</TargetFrameworks>
     <Description>Command-line utility to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
     <!-- Do not generate a package for this project (not directly at least)-->
     <IsPackable>false</IsPackable>

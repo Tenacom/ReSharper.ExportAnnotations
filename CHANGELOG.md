@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ownership of the project changed from @rdeago to @Tenacom.
 
 ### Bugs fixed in this release
-- (#3) ReSharper.ExportAnnotations.Task does not work with `dotnet build` and `dotnet msbuild`
+- [#3](https://github.com/tenacom/ReSharper.ExportAnnotations/issues/3) - ReSharper.ExportAnnotations.Task does not work with `dotnet build` and `dotnet msbuild`
 
 ### Known problems introduced by this release
 

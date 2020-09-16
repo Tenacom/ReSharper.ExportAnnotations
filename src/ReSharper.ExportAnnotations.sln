@@ -13,9 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Core", "ReSharper.ExportAnnotations.Core\ReSharper.ExportAnnotations.Core.csproj", "{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportAnnotations", "ExportAnnotations\ExportAnnotations.csproj", "{827E8587-8AC5-40CC-9CCF-F9EEB300A901}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Task", "ReSharper.ExportAnnotations.Task\ReSharper.ExportAnnotations.Task.csproj", "{3632F524-E9CC-4841-9F44-68F092C17973}"
+	ProjectSection(ProjectDependencies) = postProject
+		{032990EB-9A2F-472E-8A3E-AF540AAA0AC2} = {032990EB-9A2F-472E-8A3E-AF540AAA0AC2}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportAnnotations", "ExportAnnotations\ExportAnnotations.csproj", "{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,14 +30,14 @@ Global
 		{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}.Release|Any CPU.Build.0 = Release|Any CPU
-		{827E8587-8AC5-40CC-9CCF-F9EEB300A901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{827E8587-8AC5-40CC-9CCF-F9EEB300A901}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{827E8587-8AC5-40CC-9CCF-F9EEB300A901}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{827E8587-8AC5-40CC-9CCF-F9EEB300A901}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3632F524-E9CC-4841-9F44-68F092C17973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3632F524-E9CC-4841-9F44-68F092C17973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3632F524-E9CC-4841-9F44-68F092C17973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3632F524-E9CC-4841-9F44-68F092C17973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

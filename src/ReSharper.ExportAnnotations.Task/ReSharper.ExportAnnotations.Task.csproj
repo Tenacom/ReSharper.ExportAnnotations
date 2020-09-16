@@ -1,7 +1,14 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/2.0.1">
 
   <PropertyGroup>
+
+    <!-- The project system needs this. We don't. -->
     <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <!-- Remove the <dependencies> tag from .nupkg, because it makes the package "depend" on our TargetPlatform. -->
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+
+    <!-- Package metadata -->
     <Summary>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Summary>
     <Description>Documentation is available here: https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/master/README.md</Description>
     <PackageTags>build;msbuild</PackageTags>
@@ -9,38 +16,48 @@
     <DevelopmentDependency>true</DevelopmentDependency>
     <Serviceable>true</Serviceable>
     <MinClientVersion>4.3</MinClientVersion> <!-- Minimum NuGet client version supporting SemVer 2.0 -->
+
+    <!-- The package *is* the build output. -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <!-- Prevent the SDK from adding an actual ProjectReference item for ExportAnnotations.
+         The dependency on ExportAnnotations is set in the solution file.
+         The project system won't let you ProjectReference a multi-targeting project.
+         See https://github.com/dotnet/msbuild/issues/4303 -->
+    <AddSyntheticProjectReferencesForSolutionDependencies>false</AddSyntheticProjectReferencesForSolutionDependencies>
+
   </PropertyGroup>
 
-  <!-- Reference the tool's project so it builds before this one -->
+  <!-- Package content, minus the 'tools' folder -->
   <ItemGroup>
-    <ProjectReference Include="..\ExportAnnotations\ExportAnnotations.csproj" PrivateAssets="All" />
+    <Content Include="build\**\*" PackagePath="%(Identity)" />
+    <Content Include="buildMultiTargeting\**\*" PackagePath="%(Identity)" />
   </ItemGroup>
 
+  <!-- Collect the tool's published output for relevant target frameworks
+       and include it in the package's 'tools' folder -->
+  <Target Name="__PublishTool" BeforeTargets="CoreBuild">
 
-  <!--
-    *****************************
-    *** CONTENT CUSTOMIZATION ***
-    *****************************
-  -->
+    <PropertyGroup>
+      <__ToolProject>..\ExportAnnotations\ExportAnnotations.csproj</__ToolProject>
+      <__ToolPublishPath>$(MSBuildThisFileDirectory)obj\$(Configuration)\tools\</__ToolPublishPath>
+    </PropertyGroup>
 
-  <!-- Don't include .props and .targets files as None items; they are content and should be packed -->
-  <PropertyGroup>
-    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
-  </PropertyGroup>
+    <ItemGroup>
+      <__ToolTargetFramework Include="net471" />
+      <__ToolTargetFramework Include="netcoreapp2.1" />
+    </ItemGroup>
 
-  <!-- Define what should be in package and where -->
-  <ItemGroup>
-    <!-- Include .props and .targets files-->
-    <Content Include="build\*" PackagePath="build\" />
-    <Content Include="buildMultiTargeting\*" PackagePath="buildMultiTargeting\" />
-    <!-- Include compiled tool -->
-    <Content Include="..\ExportAnnotations\bin\$(Configuration)\**\*" PackagePath="tools\" Visible="false" />
-    <!-- Don't include publish folder -->
-    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\publish\*" />
-    <!-- Don't include .dev.json files -->
-    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.dev.json" />
-    <!-- Don't include .pdb files in Release -->
-    <Content Remove="..\ExportAnnotations\bin\$(Configuration)\**\*.pdb" Condition="'$(Configuration)' == 'Release'" />
-  </ItemGroup>
+    <!-- Publish the tool's project for each target framework -->
+    <MSBuild Projects="$(__ToolProject)" Targets="Publish" Properties="Configuration=$(Configuration);PublishDir=$(__ToolPublishPath)%(__ToolTargetFramework.Identity);PublishProtocol=FileSystem;TargetFramework=%(__ToolTargetFramework.Identity);SelfContained=false" />
+    
+    <ItemGroup>
+      <!-- Include published output as content, setting appropriate package paths -->
+      <Content Include="$(__ToolPublishPath)%(__ToolTargetFramework.Identity)\*" PackagePath="tools\%(__ToolTargetFramework.Identity)\" Visible="false" />
+      <!-- Don't include .pdb files in non-debug configurations (i.e. Release) -->
+      <Content Remove="$(__ToolPublishPath)%(__ToolTargetFramework.Identity)\*.pdb" Condition="'$(Configuration)' != 'Debug'" />
+    </ItemGroup>
+
+  </Target>
 
 </Project>

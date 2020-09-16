@@ -5,20 +5,20 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{124228C2-A3ED-477C-84C2-DE57231828B1}"
 	ProjectSection(SolutionItems) = preProject
-		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
-		..\LICENSE = ..\LICENSE
-		..\README.md = ..\README.md
+		Common.props = Common.props
+		Common.targets = Common.targets
+		LICENSE = ..\LICENSE
+		README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Core", "ReSharper.ExportAnnotations.Core\ReSharper.ExportAnnotations.Core.csproj", "{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Core", "src\ReSharper.ExportAnnotations.Core\ReSharper.ExportAnnotations.Core.csproj", "{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Task", "ReSharper.ExportAnnotations.Task\ReSharper.ExportAnnotations.Task.csproj", "{3632F524-E9CC-4841-9F44-68F092C17973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Task", "src\ReSharper.ExportAnnotations.Task\ReSharper.ExportAnnotations.Task.csproj", "{3632F524-E9CC-4841-9F44-68F092C17973}"
 	ProjectSection(ProjectDependencies) = postProject
 		{032990EB-9A2F-472E-8A3E-AF540AAA0AC2} = {032990EB-9A2F-472E-8A3E-AF540AAA0AC2}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportAnnotations", "ExportAnnotations\ExportAnnotations.csproj", "{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportAnnotations", "src\ExportAnnotations\ExportAnnotations.csproj", "{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

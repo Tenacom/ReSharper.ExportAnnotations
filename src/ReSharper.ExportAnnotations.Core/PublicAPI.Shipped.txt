@@ -1,0 +1,35 @@
+#nullable enable
+ReSharper.ExportAnnotations.AnnotationsExporter
+ReSharper.ExportAnnotations.AnnotationsExporterParameters
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AddLibraries(System.Collections.Generic.IEnumerable<string!>! paths) -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AddLibraries(params string![]! paths) -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AddLibrary(string! path) -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AddSearchDirectories(System.Collections.Generic.IEnumerable<string!>! directories) -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AddSearchDirectories(params string![]! directories) -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AddSearchDirectory(string! directory) -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AdditionalSearchDirectories.get -> System.Collections.Generic.IReadOnlyList<string!>!
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.AnnotationsExporterParameters() -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.ExportAnnotations.get -> bool
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.ExportAnnotations.set -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.Libraries.get -> System.Collections.Generic.IReadOnlyList<string!>!
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.StripAnnotations.get -> bool
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.StripAnnotations.set -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.WillSaveAssembly.get -> bool
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.XmlPath.get -> string!
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.XmlPath.set -> void
+ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions
+static ReSharper.ExportAnnotations.AnnotationsExporter.Run(string! assemblyPath, ReSharper.ExportAnnotations.AnnotationsExporterParameters! parameters) -> void
+static ReSharper.ExportAnnotations.AnnotationsExporter.Run(string! assemblyPath, System.Action<ReSharper.ExportAnnotations.AnnotationsExporterParameters!>! configure) -> void
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithExportAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithExportAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, bool value) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithLibraries(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, System.Collections.Generic.IEnumerable<string!>! paths) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithLibraries(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, params string![]! paths) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithLibrary(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, string! path) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithSearchDirectories(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, System.Collections.Generic.IEnumerable<string!>! directories) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithSearchDirectories(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, params string![]! directories) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithSearchDirectory(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, string! directory) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithStripAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithStripAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, bool value) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithXmlPath(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, string! path) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithoutExportAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithoutStripAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!

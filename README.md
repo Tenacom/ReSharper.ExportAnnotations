@@ -96,6 +96,18 @@ It may or may not work with other SDKs.
 
 You should have no problems with `.vbproj` projects, other than the limitations stated above. Projects in languages other than C# and VB are currently not supported.
 
+### Signed assemblies
+
+When stripping annotations from a signed assembly, the signature will be stripped as well.
+
+Work on this is being tracked in issue #2.
+
+## Credits
+
+The font used in the package icon is [Inconsolata Bold](https://fontlibrary.org/en/font/inconsolata#Inconsolata-Bold) by Raph Levien, Kirill Tkachev (cyreal.org), from [Font Library](https://fontlibrary.org).
+
+The font used in the logo is [BloggerSans.otf](https://fontlibrary.org/en/font/blogger-sans-otf) by Sergiy S. Tkachenko, from [Font Library](https://fontlibrary.org).
+
 ---
 
 *Disclaimer:* The author of this library is in no way affiliated to [JetBrains s.r.o.](https://www.jetbrains.com/) (the makers of ReSharper) other than being a satisfied cutomer.

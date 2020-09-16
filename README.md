@@ -72,15 +72,21 @@ In short, if you use MSBuild, you can use this task.
 ## Caveats
 
 ### Building under Non-Windows operating systems
-If you build under a non-Windows operating system, the process of stripping annotations will also strip away debug symbols from your assembly. This is a limitation of the [Mono.Cecil](https://github.com/jbevain/cecil) library. You may want to only strip annotations in Release mode, like this:
+If you build under a non-Windows operating system, the process of stripping annotations will also strip away debug symbols from your assembly. This is a limitation of the [Mono.Cecil](https://github.com/jbevain/cecil) library.
+
+You may want to only strip annotations in Release mode. Be aware that this way your debug mode assembly will still reference `JetBrains.Annotations.dll`, which will become a transient dependency.
+
+For example, given the project file above, to strip annotations only in Release mode you can add the following lines at the bottom of the file, just before the `</Project>` line:
+
 ```xml
-<PropertyGroup>
-  <ExportJetBrainsAnnotations>true</ExportJetBrainsAnnotations>
-  <StripJetBrainsAnnotations Condition="'$(Configuration)' == 'Release'">true</StripJetBrainsAnnotations>
-  <StripJetBrainsAnnotations Condition="'$(Configuration)' != 'Release'">false</StripJetBrainsAnnotations>
-</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' != 'Release'">
+    <StripJetBrainsAnnotations>false</StripJetBrainsAnnotations>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' != 'Release'">
+    <PackageReference Update="JetBrains.Annotations" PrivateAssets="" />
+  </ItemGroup>
 ```
-Be aware that this way your debug mode assembly will still reference `JetBrains.Annotations.dll`.
 
 ### Supported project types
 

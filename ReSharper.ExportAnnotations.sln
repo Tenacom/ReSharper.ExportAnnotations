@@ -3,12 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{124228C2-A3ED-477C-84C2-DE57231828B1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "- Documentation", "- Documentation", "{8790FE96-7716-4B83-AEC2-6EBEDFC4419D}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		THIRD-PARTY-NOTICES = THIRD-PARTY-NOTICES
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "- Configuration", "- Configuration", "{46B5153B-C518-4A48-BF6B-39989F54BB59}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		Common.props = Common.props
-		Common.targets = Common.targets
-		LICENSE = ..\LICENSE
-		README.md = ..\README.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+		stylecop.json = stylecop.json
+		VERSION = VERSION
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations.Core", "src\ReSharper.ExportAnnotations.Core\ReSharper.ExportAnnotations.Core.csproj", "{3C74FF39-BD1B-4DE9-9B98-E0051AADE118}"

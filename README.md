@@ -38,13 +38,13 @@ A fourth option would be to use [Fody](https://github.com/Fody/Fody) with the [J
     <StripJetBrainsAnnotations>true</StripJetBrainsAnnotations> <!-- true by default -->
   </PropertyGroup>
 
-  <PropertyGroup>
+  <ItemGroup>
     <!-- Find out latest version here: https://www.nuget.org/packages/JetBrains.Annotations/
          The task will work regardless of this version.
     -->
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" /> <!-- Will not become a transient dependency -->
     <PackageReference Include="ReSharper.ExportAnnotations.Task" Version="1.0.0" PrivateAssets="All" /> <!-- Only used during build -->
-  </PropertyGroup>
+  </ItemGroup>
 
 </Project>
 ```

@@ -1,51 +1,51 @@
-﻿using System.Collections.Generic;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using JetBrains.Annotations;
 using Mono.Cecil;
+using ReSharper.ExportAnnotations.Internal;
 
 namespace ReSharper.ExportAnnotations
 {
-    partial class AnnotationsExporter
+    /// <content />
+    public partial class AnnotationsExporter
     {
-        #region Private API - XML building
-
-        [NotNull]
-        static IEnumerable<XElement> GetCustomAttributeArgumentsXml([NotNull] ICustomAttribute customAttribute)
+        private static IEnumerable<XElement> GetCustomAttributeArgumentsXml(ICustomAttribute customAttribute)
             => customAttribute.ConstructorArguments.Select(CustomAttributeArgumentToXml);
 
-        [NotNull]
-        static IEnumerable<XElement> GetAnnotationsXml([NotNull] ICustomAttributeProvider member)
+        private static IEnumerable<XElement> GetAnnotationsXml(ICustomAttributeProvider member)
             => member.CustomAttributes.Where(IsExportableJetBrainsAnnotation).Select(CustomAttributeToXml);
 
-        [NotNull]
-        static IEnumerable<XElement> GetGenericParametersXml([NotNull] IGenericParameterProvider provider)
-            => provider.GenericParameters.Where(p => p.HasCustomAttributes).Select(GenericParameterToXml);
+        private static IEnumerable<XElement> GetGenericParametersXml(IGenericParameterProvider provider)
+            => provider.GenericParameters
+                .Where(p => p.HasCustomAttributes)
+                .Select(GenericParameterToXml)
+                .WhereNotNull();
 
-        [NotNull]
-        static IEnumerable<XElement> GetParametersXml([NotNull] IEnumerable<ParameterDefinition> parameters)
-            => parameters.Where(p => p.HasCustomAttributes).Select(ParameterToXml);
+        private static IEnumerable<XElement> GetParametersXml(IEnumerable<ParameterDefinition> parameters)
+            => parameters.Where(p => p.HasCustomAttributes).Select(ParameterToXml).WhereNotNull();
 
-        [NotNull]
-        static IEnumerable<XElement> GetMethodsXml([NotNull] TypeDefinition type)
-            => type.Methods.Select(MethodToXml);
+        private static IEnumerable<XElement> GetMethodsXml(TypeDefinition type)
+            => type.Methods.Select(MethodToXml).WhereNotNull();
 
-        [NotNull]
-        static IEnumerable<XElement> GetPropertiesXml([NotNull] TypeDefinition type)
-            => type.Properties.Select(PropertyToXml);
+        private static IEnumerable<XElement> GetPropertiesXml(TypeDefinition type)
+            => type.Properties.Select(PropertyToXml).WhereNotNull();
 
-        [NotNull]
-        static IEnumerable<XElement> GetFieldsXml([NotNull] TypeDefinition type)
-            => type.Fields.Select(FieldToXml);
+        private static IEnumerable<XElement> GetFieldsXml(TypeDefinition type)
+            => type.Fields.Select(FieldToXml).WhereNotNull();
 
-        [NotNull]
-        static IEnumerable<XElement> GetEventsXml([NotNull] TypeDefinition type)
-            => type.Events.Select(EventToXml);
+        private static IEnumerable<XElement> GetEventsXml(TypeDefinition type)
+            => type.Events.Select(EventToXml).WhereNotNull();
 
-        [NotNull]
-        static IEnumerable<XElement> GetTypesXml([NotNull] AssemblyDefinition assembly)
+        private static IEnumerable<XElement> GetTypesXml(AssemblyDefinition assembly)
             => assembly.Modules.SelectMany(m => m.GetTypes()).Where(IsExportedType).SelectMany(TypeToXml);
-
-        #endregion
     }
 }

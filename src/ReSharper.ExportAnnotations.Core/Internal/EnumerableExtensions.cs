@@ -7,20 +7,19 @@
 // See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
 // -----------------------------------------------------------------------------------
 
-using System.Text;
-using Cecil.XmlDocNames;
-using Mono.Cecil;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace ReSharper.ExportAnnotations
+namespace ReSharper.ExportAnnotations.Internal
 {
-    /// <content />
-    public partial class AnnotationsExporter
+    internal static class EnumerableExtensions
     {
-        private static string GetXmlName(AssemblyDefinition assembly) => assembly.Name.Name;
+        public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> @this)
+            where T : class
+            => @this.Where(x => x != null)!;
 
-        private static string GetXmlName(ParameterReference parameter) => parameter.Name;
-
-        private static string GetXmlName(MemberReference member)
-            => new StringBuilder().AppendXmlDocName(member).ToString();
+        public static IEnumerable<T> PrependIfNotNull<T>(this IEnumerable<T> @this, T? item)
+            where T : class
+            => item == null ? @this : @this.Prepend(item);
     }
 }

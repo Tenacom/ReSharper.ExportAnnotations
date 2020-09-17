@@ -59,6 +59,7 @@
     <!-- Complete command line with options -->
     <PropertyGroup>
       <_ExportAnnotationsCommandLine>$(_ExportAnnotationsCommand) &quot;%(IntermediateAssembly.FullPath)&quot;</_ExportAnnotationsCommandLine>
+      <_ExportAnnotationsCommandLine Condition="!$(ExportJetBrainsAnnotations)">$(_ExportAnnotationsCommandLine) --no-export</_ExportAnnotationsCommandLine>
       <_ExportAnnotationsCommandLine Condition="$(StripJetBrainsAnnotations)">$(_ExportAnnotationsCommandLine) --strip</_ExportAnnotationsCommandLine>
       <_ExportAnnotationsCommandLine>$(_ExportAnnotationsCommandLine) --liblist &quot;$(_ExportAnnotationsLibraryList)&quot;</_ExportAnnotationsCommandLine>
     </PropertyGroup>

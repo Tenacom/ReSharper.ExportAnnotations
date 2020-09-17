@@ -44,7 +44,7 @@
 
   <!-- Run tool immediately after compiler -->
   <Target Name="_ExportAnnotations_RunTool"
-          Condition="$(ExportJetBrainsAnnotations) And ('$(SkipCompilerExecution)' != 'true')"
+          Condition="($(ExportJetBrainsAnnotations) Or $(StripJetBrainsAnnotations)) And ('$(SkipCompilerExecution)' != 'true')"
           AfterTargets="CoreCompile">
 
     <PropertyGroup>

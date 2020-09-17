@@ -1,4 +1,4 @@
-﻿<Project InitialTargets="_TenacomExportAnnotations_CheckSupport">
+﻿<Project InitialTargets="_ExportAnnotations_CheckSupport">
 
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildToolsVersion)' != 'Current'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <!-- Issue errors on unsupported project type / MSBuild runtime type -->
-  <Target Name="_TenacomExportAnnotations_CheckSupport">
+  <Target Name="_ExportAnnotations_CheckSupport">
     <Error Condition="'$(MSBuildProjectExtension)' != '.csproj' And '$(MSBuildProjectExtension)' != '.vbproj'" Text="ReSharper.ExportAnnotations.Task: unsupported project type '$(MSBuildProjectExtension)' (only .csproj and .vbproj are supported)" />
     <Error Condition="'$(_ExportAnnotationsCommand)' == ''" Text="ReSharper.ExportAnnotations.Task: unsupported MSBuild runtime type '$(MSBuildRuntimeType)' (only Core, Full, and Mono are supported)" />
   </Target>
@@ -43,7 +43,7 @@
   </PropertyGroup>
 
   <!-- Run tool immediately after compiler -->
-  <Target Name="_TenacomExportAnnotations_ExportAnnotations"
+  <Target Name="_ExportAnnotations_RunTool"
           Condition="$(ExportJetBrainsAnnotations) And ('$(SkipCompilerExecution)' != 'true')"
           AfterTargets="CoreCompile">
 
@@ -69,7 +69,7 @@
   </Target>
 
   <!-- Hook into CopyFilesToOutputDirectory -->
-  <Target Name="_TenacomExportAnnotations_CopyFilesToOutputDirectory"
+  <Target Name="_ExportAnnotations_CopyFilesToOutputDirectory"
           Condition="$(ExportJetBrainsAnnotations)"
           AfterTargets="CopyFilesToOutputDirectory">
 
@@ -89,11 +89,11 @@
 
   <!-- Hook into package creation to add external annotations file to package -->
   <PropertyGroup Condition="$(ExportJetBrainsAnnotations)">
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_TenacomExportAnnotations_IncludeExternalAnnotationsInPackage</TargetsForTfmSpecificContentInPackage>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_ExportAnnotations_IncludeExternalAnnotationsInPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
   
   <!-- Add external annotations file to package -->
-  <Target Name="_TenacomExportAnnotations_IncludeExternalAnnotationsInPackage"
+  <Target Name="_ExportAnnotations_IncludeExternalAnnotationsInPackage"
           Condition="$(ExportJetBrainsAnnotations)">
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).ExternalAnnotations.xml" PackagePath="lib/$(TargetFramework)" />

@@ -1,4 +1,13 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
@@ -9,8 +18,6 @@ namespace ReSharper.ExportAnnotations
     /// </summary>
     public static class AnnotationsExporterParametersExtensions
     {
-        #region Public API
-
         /// <summary>
         /// Sets a value indicating whether to export annotations to a XML file.
         /// </summary>
@@ -22,8 +29,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AnnotationsExporterParameters.ExportAnnotations"/>
         /// <seealso cref="WithExportAnnotations(AnnotationsExporterParameters)"/>
         /// <seealso cref="WithoutExportAnnotations(AnnotationsExporterParameters)"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithExportAnnotations([NotNull] this AnnotationsExporterParameters @this, bool value)
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithExportAnnotations(this AnnotationsExporterParameters @this, bool value)
         {
             @this.ExportAnnotations = value;
             return @this;
@@ -39,8 +46,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AnnotationsExporterParameters.ExportAnnotations"/>
         /// <seealso cref="WithExportAnnotations(AnnotationsExporterParameters,bool)"/>
         /// <seealso cref="WithoutExportAnnotations(AnnotationsExporterParameters)"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithExportAnnotations([NotNull] this AnnotationsExporterParameters @this) => WithExportAnnotations(@this, true);
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithExportAnnotations(this AnnotationsExporterParameters @this) => WithExportAnnotations(@this, true);
 
         /// <summary>
         /// Indicates to not export annotations.
@@ -52,8 +59,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AnnotationsExporterParameters.ExportAnnotations"/>
         /// <seealso cref="WithExportAnnotations(AnnotationsExporterParameters,bool)"/>
         /// <seealso cref="WithExportAnnotations(AnnotationsExporterParameters)"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithoutExportAnnotations([NotNull] this AnnotationsExporterParameters @this) => WithExportAnnotations(@this, false);
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithoutExportAnnotations(this AnnotationsExporterParameters @this) => WithExportAnnotations(@this, false);
 
         /// <summary>
         /// Sets a value indicating whether to strip annotations after (or instead of) exporting them.
@@ -66,8 +73,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AnnotationsExporterParameters.StripAnnotations"/>
         /// <seealso cref="WithStripAnnotations(AnnotationsExporterParameters)"/>
         /// <seealso cref="WithoutStripAnnotations(AnnotationsExporterParameters)"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithStripAnnotations([NotNull] this AnnotationsExporterParameters @this, bool value)
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithStripAnnotations(this AnnotationsExporterParameters @this, bool value)
         {
             @this.StripAnnotations = value;
             return @this;
@@ -83,8 +90,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AnnotationsExporterParameters.StripAnnotations"/>
         /// <seealso cref="WithStripAnnotations(AnnotationsExporterParameters,bool)"/>
         /// <seealso cref="WithoutStripAnnotations(AnnotationsExporterParameters)"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithStripAnnotations([NotNull] this AnnotationsExporterParameters @this) => WithStripAnnotations(@this, true);
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithStripAnnotations(this AnnotationsExporterParameters @this) => WithStripAnnotations(@this, true);
 
         /// <summary>
         /// Indicates to not strip annotations.
@@ -96,8 +103,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AnnotationsExporterParameters.StripAnnotations"/>
         /// <seealso cref="WithStripAnnotations(AnnotationsExporterParameters,bool)"/>
         /// <seealso cref="WithStripAnnotations(AnnotationsExporterParameters)"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithoutStripAnnotations([NotNull] this AnnotationsExporterParameters @this) => WithStripAnnotations(@this, false);
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithoutStripAnnotations(this AnnotationsExporterParameters @this) => WithStripAnnotations(@this, false);
 
         /// <summary>
         /// Sets the full path of the XML file where external annotations should be saved.
@@ -108,8 +115,8 @@ namespace ReSharper.ExportAnnotations
         /// property set to <paramref name="path"/>.</returns>
         /// <exception cref="NullReferenceException"><paramref name="this"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.XmlPath"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithXmlPath([NotNull] this AnnotationsExporterParameters @this, [CanBeNull] string path)
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithXmlPath(this AnnotationsExporterParameters @this, string? path)
         {
             @this.XmlPath = path;
             return @this;
@@ -125,8 +132,8 @@ namespace ReSharper.ExportAnnotations
         /// <exception cref="NullReferenceException"><paramref name="this"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.Libraries"/>
         /// <seealso cref="AnnotationsExporterParameters.AddLibrary"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithLibrary([NotNull] this AnnotationsExporterParameters @this, [NotNull] string path)
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithLibrary(this AnnotationsExporterParameters @this, string path)
         {
             @this.AddLibrary(path);
             return @this;
@@ -143,10 +150,10 @@ namespace ReSharper.ExportAnnotations
         /// <exception cref="ArgumentNullException"><paramref name="paths"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.Libraries"/>
         /// <seealso cref="AnnotationsExporterParameters.AddLibraries(IEnumerable{string})"/>
-        [PublicAPI, NotNull]
+        [PublicAPI]
         public static AnnotationsExporterParameters WithLibraries(
-            [NotNull] this AnnotationsExporterParameters @this,
-            [NotNull, ItemNotNull, InstantHandle] IEnumerable<string> paths)
+            this AnnotationsExporterParameters @this,
+            [InstantHandle] IEnumerable<string> paths)
         {
             @this.AddLibraries(paths);
             return @this;
@@ -163,10 +170,8 @@ namespace ReSharper.ExportAnnotations
         /// <exception cref="ArgumentNullException"><paramref name="paths"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.Libraries"/>
         /// <seealso cref="AnnotationsExporterParameters.AddLibraries(string[])"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithLibraries(
-            [NotNull] this AnnotationsExporterParameters @this,
-            [NotNull, ItemNotNull, InstantHandle] params string[] paths)
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithLibraries(this AnnotationsExporterParameters @this, params string[] paths)
         {
             @this.AddLibraries(paths);
             return @this;
@@ -182,8 +187,8 @@ namespace ReSharper.ExportAnnotations
         /// <exception cref="NullReferenceException"><paramref name="this"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.AdditionalSearchDirectories"/>
         /// <seealso cref="AnnotationsExporterParameters.AddSearchDirectory"/>
-        [PublicAPI, NotNull]
-        public static AnnotationsExporterParameters WithSearchDirectory([NotNull] this AnnotationsExporterParameters @this, [NotNull] string directory)
+        [PublicAPI]
+        public static AnnotationsExporterParameters WithSearchDirectory(this AnnotationsExporterParameters @this, string directory)
         {
             @this.AddSearchDirectory(directory);
             return @this;
@@ -199,10 +204,10 @@ namespace ReSharper.ExportAnnotations
         /// <exception cref="NullReferenceException"><paramref name="this"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.AdditionalSearchDirectories"/>
         /// <seealso cref="AnnotationsExporterParameters.AddSearchDirectories(IEnumerable{string})"/>
-        [PublicAPI, NotNull]
+        [PublicAPI]
         public static AnnotationsExporterParameters WithSearchDirectories(
-            [NotNull] this AnnotationsExporterParameters @this,
-            [NotNull, ItemNotNull, InstantHandle] IEnumerable<string> directories)
+            this AnnotationsExporterParameters @this,
+            [InstantHandle] IEnumerable<string> directories)
         {
             @this.AddSearchDirectories(directories);
             return @this;
@@ -218,15 +223,13 @@ namespace ReSharper.ExportAnnotations
         /// <exception cref="NullReferenceException"><paramref name="this"/> is <c>null</c>.</exception>
         /// <seealso cref="AnnotationsExporterParameters.AdditionalSearchDirectories"/>
         /// <seealso cref="AnnotationsExporterParameters.AddSearchDirectories(string[])"/>
-        [PublicAPI, NotNull]
+        [PublicAPI]
         public static AnnotationsExporterParameters WithSearchDirectories(
-            [NotNull] this AnnotationsExporterParameters @this,
-            [NotNull, ItemNotNull, InstantHandle] params string[] directories)
+            this AnnotationsExporterParameters @this,
+            params string[] directories)
         {
             @this.AddSearchDirectories(directories);
             return @this;
         }
-
-        #endregion
     }
 }

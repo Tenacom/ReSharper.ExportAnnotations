@@ -1,4 +1,13 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
@@ -10,13 +19,11 @@ namespace ReSharper.ExportAnnotations
     /// <summary>
     /// Exports and/or strips ReSharper annotations from compiled assemblies.
     /// </summary>
-    /// <seealso cref="Run(string,AnnotationsExporterParameters)"/>
+    /// <seealso cref="Run(string,AnnotationsExporterParameters?)"/>
     /// <seealso cref="Run(string,Action{AnnotationsExporterParameters})"/>
     [PublicAPI]
     public static partial class AnnotationsExporter
     {
-        #region Public API
-
         /// <summary>
         /// Exports and/or strips ReSharper annotations from a compiled assembly,
         /// according to a <see cref="AnnotationsExporterParameters"/> object
@@ -30,13 +37,15 @@ namespace ReSharper.ExportAnnotations
         /// <para>- or -</para>
         /// <para><paramref name="configure"/> is <c>null</c>.</para>
         /// </exception>
-        /// <seealso cref="Run(string,AnnotationsExporterParameters)"/>
+        /// <seealso cref="Run(string,AnnotationsExporterParameters?)"/>
         /// <seealso cref="AnnotationsExporterParameters"/>
         [PublicAPI]
-        public static void Run([NotNull] string assemblyPath, [NotNull] Action<AnnotationsExporterParameters> configure)
+        public static void Run(string assemblyPath, Action<AnnotationsExporterParameters> configure)
         {
             if (configure == null)
+            {
                 throw new ArgumentNullException(nameof(configure));
+            }
 
             var parameters = new AnnotationsExporterParameters();
             configure(parameters);
@@ -56,44 +65,54 @@ namespace ReSharper.ExportAnnotations
         /// </remarks>
         /// <seealso cref="Run(string,Action{AnnotationsExporterParameters})"/>
         /// <seealso cref="AnnotationsExporterParameters"/>
-        /// <seealso cref="C:AnnotationsExporterParameters()"/>
+        /// <seealso cref="AnnotationsExporterParameters()"/>
         [PublicAPI]
-        public static void Run([NotNull] string assemblyPath, [CanBeNull] AnnotationsExporterParameters parameters)
+        public static void Run(string assemblyPath, AnnotationsExporterParameters? parameters)
         {
             if (assemblyPath == null)
+            {
                 throw new ArgumentNullException(nameof(assemblyPath));
+            }
 
             parameters ??= new AnnotationsExporterParameters();
 
             var assemblyResolver = new MyAssemblyResolver(assemblyPath, parameters.Libraries);
             foreach (var directory in parameters.AdditionalSearchDirectories)
+            {
                 assemblyResolver.AddSearchDirectory(directory);
+            }
 
             var readerParameters = new ReaderParameters
             {
                 ReadingMode = ReadingMode.Deferred,
                 ReadWrite = parameters.WillSaveAssembly,
                 AssemblyResolver = assemblyResolver,
-                ReadSymbols = true
+                ReadSymbols = true,
             };
 
             using var assembly = AssemblyDefinition.ReadAssembly(assemblyPath, readerParameters);
             if (parameters.ExportAnnotations)
-                ExportAnnotations(assembly,
+            {
+                ExportAnnotations(
+                    assembly,
                     parameters.XmlPath ?? Path.ChangeExtension(assemblyPath, ".ExternalAnnotations.xml"));
+            }
 
             if (parameters.StripAnnotations)
-                StripAnnotations(assembly);
-
-            if (parameters.WillSaveAssembly)
             {
-                var writerParameters = new WriterParameters {
-                    WriteSymbols = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) // Symbol writer uses COM Interop, thus is Windows-only
-                };
-                assembly.Write(writerParameters);
+                StripAnnotations(assembly);
             }
-        }
 
-        #endregion
+            if (!parameters.WillSaveAssembly)
+            {
+                return;
+            }
+
+            var writerParameters = new WriterParameters
+            {
+                WriteSymbols = RuntimeInformation.IsOSPlatform(OSPlatform.Windows), // Symbol writer uses COM Interop, thus is Windows-only
+            };
+            assembly.Write(writerParameters);
+        }
     }
 }

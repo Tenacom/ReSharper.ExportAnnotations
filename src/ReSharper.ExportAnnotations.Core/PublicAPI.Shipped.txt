@@ -15,10 +15,10 @@ ReSharper.ExportAnnotations.AnnotationsExporterParameters.Libraries.get -> Syste
 ReSharper.ExportAnnotations.AnnotationsExporterParameters.StripAnnotations.get -> bool
 ReSharper.ExportAnnotations.AnnotationsExporterParameters.StripAnnotations.set -> void
 ReSharper.ExportAnnotations.AnnotationsExporterParameters.WillSaveAssembly.get -> bool
-ReSharper.ExportAnnotations.AnnotationsExporterParameters.XmlPath.get -> string!
+ReSharper.ExportAnnotations.AnnotationsExporterParameters.XmlPath.get -> string?
 ReSharper.ExportAnnotations.AnnotationsExporterParameters.XmlPath.set -> void
 ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions
-static ReSharper.ExportAnnotations.AnnotationsExporter.Run(string! assemblyPath, ReSharper.ExportAnnotations.AnnotationsExporterParameters! parameters) -> void
+static ReSharper.ExportAnnotations.AnnotationsExporter.Run(string! assemblyPath, ReSharper.ExportAnnotations.AnnotationsExporterParameters? parameters) -> void
 static ReSharper.ExportAnnotations.AnnotationsExporter.Run(string! assemblyPath, System.Action<ReSharper.ExportAnnotations.AnnotationsExporterParameters!>! configure) -> void
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithExportAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithExportAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, bool value) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
@@ -30,6 +30,6 @@ static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithS
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithSearchDirectory(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, string! directory) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithStripAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithStripAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, bool value) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
-static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithXmlPath(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, string! path) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
+static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithXmlPath(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this, string? path) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithoutExportAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!
 static ReSharper.ExportAnnotations.AnnotationsExporterParametersExtensions.WithoutStripAnnotations(this ReSharper.ExportAnnotations.AnnotationsExporterParameters! this) -> ReSharper.ExportAnnotations.AnnotationsExporterParameters!

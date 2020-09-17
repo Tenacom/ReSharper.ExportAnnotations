@@ -1,53 +1,44 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System.Collections.Generic;
 using System.Xml.Linq;
-using JetBrains.Annotations;
 
 namespace ReSharper.ExportAnnotations.Internal
 {
-    sealed class XElementBuilder
+    internal sealed class XElementBuilder
     {
-        #region Instance management
-
-        internal XElementBuilder([NotNull] string tag, [NotNull] string nameAttribute, [NotNull] string name)
+        internal XElementBuilder(string tag, string nameAttribute, string name)
         {
             Tag = tag;
             NameAttribute = nameAttribute;
             Name = name;
         }
 
-        #endregion
+        public XElement? Element { get; private set; }
 
-        #region Public API
+        private string Tag { get; }
 
-        [CanBeNull]
-        public XElement Element { get; private set; }
+        private string NameAttribute { get; }
 
-        [NotNull]
+        private string Name { get; }
+
         public XElement EnsureElement() => Element ??= new XElement(Tag, new XAttribute(NameAttribute, Name));
 
-        [NotNull]
-        public XElementBuilder AddRange([NotNull] IEnumerable<XElement> children)
+        public XElementBuilder AddRange(IEnumerable<XElement?> children)
         {
-            foreach (var child in children.Where(c => c != null))
+            foreach (var child in children.WhereNotNull())
+            {
                 EnsureElement().Add(child);
+            }
 
             return this;
         }
-
-        #endregion
-
-        #region Private API
-
-        [NotNull]
-        string Tag { get; }
-
-        [NotNull]
-        string NameAttribute { get; }
-
-        [NotNull]
-        string Name { get; }
-
-        #endregion
     }
 }

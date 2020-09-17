@@ -1,4 +1,13 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -7,33 +16,40 @@ using Mono.Cecil;
 
 namespace ReSharper.ExportAnnotations
 {
-    partial class AnnotationsExporter
+    /// <content />
+    public partial class AnnotationsExporter
     {
-        #region Private API
-
-        static void StripFrom([NotNull] ICustomAttributeProvider provider)
+        private static void StripFrom(ICustomAttributeProvider provider)
         {
             if (!provider.HasCustomAttributes)
+            {
                 return;
+            }
 
             var attributes = provider.CustomAttributes;
             var attributesToStrip = attributes.Where(a => a.AttributeType.Namespace == "JetBrains.Annotations").ToArray();
             foreach (var attribute in attributesToStrip)
-                attributes.Remove(attribute);
+            {
+                _ = attributes.Remove(attribute);
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void StripFromAllIf(bool condition, [NotNull, ItemNotNull] IEnumerable<ICustomAttributeProvider> providers)
+        private static void StripFromAllIf(bool condition, IEnumerable<ICustomAttributeProvider> providers)
         {
             if (!condition)
+            {
                 return;
+            }
 
             foreach (var provider in providers)
+            {
                 StripFrom(provider);
+            }
         }
 
         [PublicAPI]
-        static void StripAnnotations([NotNull] AssemblyDefinition assembly)
+        private static void StripAnnotations(AssemblyDefinition assembly)
         {
             StripFrom(assembly);
             foreach (var module in assembly.Modules.Where(m => m.HasAssemblyReferences))
@@ -42,7 +58,9 @@ namespace ReSharper.ExportAnnotations
                 var jetBrainsAnnotationsReference = references.FirstOrDefault(r =>
                     r.Name.StartsWith("JetBrains.Annotations", StringComparison.Ordinal));
                 if (jetBrainsAnnotationsReference == null)
+                {
                     continue;
+                }
 
                 StripFrom(module);
                 foreach (var type in module.GetTypes())
@@ -53,7 +71,9 @@ namespace ReSharper.ExportAnnotations
                     StripFromAllIf(type.HasEvents, type.Events);
                     StripFromAllIf(type.HasProperties, type.Properties);
                     if (!type.HasMethods)
+                    {
                         continue;
+                    }
 
                     foreach (var method in type.Methods)
                     {
@@ -64,10 +84,8 @@ namespace ReSharper.ExportAnnotations
                     }
                 }
 
-                references.Remove(jetBrainsAnnotationsReference);
+                _ = references.Remove(jetBrainsAnnotationsReference);
             }
         }
-
-        #endregion
     }
 }

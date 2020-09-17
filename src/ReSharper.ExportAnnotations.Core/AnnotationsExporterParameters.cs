@@ -1,4 +1,13 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
@@ -9,14 +18,8 @@ namespace ReSharper.ExportAnnotations
     /// </summary>
     public sealed class AnnotationsExporterParameters
     {
-        #region Private data
-
-        readonly List<string> _libraries = new List<string>();
-        readonly List<string> _additionalSearchDirectories = new List<string>();
-
-        #endregion
-
-        #region Instance management
+        private readonly List<string> _libraries = new List<string>();
+        private readonly List<string> _additionalSearchDirectories = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnotationsExporterParameters"/> class,
@@ -28,10 +31,6 @@ namespace ReSharper.ExportAnnotations
         {
             ExportAnnotations = true;
         }
-
-        #endregion
-
-        #region Public API
 
         /// <summary>
         /// Gets or sets a value indicating whether to export annotations
@@ -55,7 +54,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddLibrary"/>
         /// <seealso cref="AddLibraries(IEnumerable{string})"/>
         /// <seealso cref="AddLibraries(string[])"/>
-        [PublicAPI, NotNull, ItemNotNull]
+        [PublicAPI]
         public IReadOnlyList<string> Libraries => _libraries;
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddSearchDirectory"/>
         /// <seealso cref="AddSearchDirectories(IEnumerable{string})"/>
         /// <seealso cref="AddSearchDirectories(string[])"/>
-        [PublicAPI, NotNull, ItemNotNull]
+        [PublicAPI]
         public IReadOnlyList<string> AdditionalSearchDirectories => _additionalSearchDirectories;
 
         /// <summary>
@@ -73,8 +72,8 @@ namespace ReSharper.ExportAnnotations
         /// in the same directory and with the same name as the assembly, having a
         /// <c>.ExternalAnnotations.xml</c> extension.</para>
         /// </summary>
-        [PublicAPI, CanBeNull]
-        public string XmlPath { get; set; }
+        [PublicAPI]
+        public string? XmlPath { get; set; }
 
         /// <summary>
         /// <para>Gets a value indicating whether the options currently set on this instance
@@ -93,7 +92,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddLibraries(IEnumerable{string})"/>
         /// <seealso cref="AddLibraries(string[])"/>
         [PublicAPI]
-        public void AddLibrary([NotNull] string path) => _libraries.Add(path);
+        public void AddLibrary(string path) => _libraries.Add(path);
 
         /// <summary>
         /// Adds zero or more referenced libraries.
@@ -104,8 +103,8 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddLibrary"/>
         /// <seealso cref="AddLibraries(string[])"/>
         [PublicAPI]
-        public void AddLibraries([NotNull, ItemNotNull, InstantHandle] IEnumerable<string> paths)
-            =>_libraries.AddRange(paths);
+        public void AddLibraries([InstantHandle] IEnumerable<string> paths)
+            => _libraries.AddRange(paths);
 
         /// <summary>
         /// Adds zero or more referenced libraries.
@@ -116,7 +115,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddLibrary"/>
         /// <seealso cref="AddLibraries(IEnumerable{string})"/>
         [PublicAPI]
-        public void AddLibraries([NotNull, ItemNotNull, InstantHandle] params string[] paths)
+        public void AddLibraries([InstantHandle] params string[] paths)
             => _libraries.AddRange(paths);
 
         /// <summary>
@@ -127,7 +126,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddSearchDirectories(IEnumerable{string})"/>
         /// <seealso cref="AddSearchDirectories(string[])"/>
         [PublicAPI]
-        public void AddSearchDirectory([NotNull] string directory)
+        public void AddSearchDirectory(string directory)
             => _additionalSearchDirectories.Add(directory);
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddSearchDirectory"/>
         /// <seealso cref="AddSearchDirectories(string[])"/>
         [PublicAPI]
-        public void AddSearchDirectories([NotNull, ItemNotNull, InstantHandle] IEnumerable<string> directories)
+        public void AddSearchDirectories([InstantHandle] IEnumerable<string> directories)
             => _additionalSearchDirectories.AddRange(directories);
 
         /// <summary>
@@ -151,9 +150,7 @@ namespace ReSharper.ExportAnnotations
         /// <seealso cref="AddSearchDirectory"/>
         /// <seealso cref="AddSearchDirectories(IEnumerable{string})"/>
         [PublicAPI]
-        public void AddSearchDirectories([NotNull, ItemNotNull, InstantHandle] params string[] directories)
+        public void AddSearchDirectories([InstantHandle] params string[] directories)
             => _additionalSearchDirectories.AddRange(directories);
-
-        #endregion
     }
 }

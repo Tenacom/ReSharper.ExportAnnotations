@@ -1,82 +1,77 @@
-﻿using System.Collections.Generic;
+﻿// -----------------------------------------------------------------------------------
+// Copyright (C) Tenacom. All rights reserved.
+// Licensed under the MIT license.
+// See LICENSE file in the project root for full license information.
+//
+// Part of this file may be third-party code, distributed under a compatible license.
+// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// -----------------------------------------------------------------------------------
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using JetBrains.Annotations;
 using Mono.Cecil;
 using ReSharper.ExportAnnotations.Internal;
 
 namespace ReSharper.ExportAnnotations
 {
-    partial class AnnotationsExporter
+    /// <content />
+    public partial class AnnotationsExporter
     {
-        #region Private API - LINQ selectors
-
-        [CanBeNull]
-        static XElement CustomAttributeArgumentToXml(CustomAttributeArgument argument)
+        private static XElement CustomAttributeArgumentToXml(CustomAttributeArgument argument)
             => new XElement("argument", argument.Value.ToString());
 
-        [NotNull]
-        static XElement CustomAttributeToXml([NotNull] CustomAttribute customAttribute)
+        private static XElement CustomAttributeToXml(CustomAttribute customAttribute)
             => new XElementBuilder("attribute", "ctor", GetXmlName(customAttribute.Constructor))
                 .AddRange(GetCustomAttributeArgumentsXml(customAttribute))
                 .EnsureElement();
 
-        [CanBeNull]
-        static XElement GenericParameterToXml([NotNull] GenericParameter parameter)
+        private static XElement? GenericParameterToXml(GenericParameter parameter)
             => new XElementBuilder("typeparameter", "name", GetXmlName(parameter))
                 .AddRange(GetAnnotationsXml(parameter))
                 .Element;
 
-        [CanBeNull]
-        static XElement ParameterToXml([NotNull] ParameterDefinition parameter)
+        private static XElement? ParameterToXml(ParameterDefinition parameter)
             => new XElementBuilder("parameter", "name", GetXmlName(parameter))
                 .AddRange(GetAnnotationsXml(parameter))
                 .Element;
 
-        [CanBeNull]
-        static XElement MethodToXml([NotNull] MethodDefinition method)
+        private static XElement? MethodToXml(MethodDefinition method)
             => new XElementBuilder("member", "name", GetXmlName(method))
                 .AddRange(GetAnnotationsXml(method))
                 .AddRange(GetGenericParametersXml(method))
                 .AddRange(GetParametersXml(method.Parameters))
                 .Element;
 
-        [CanBeNull]
-        static XElement PropertyToXml([NotNull] PropertyDefinition property)
+        private static XElement? PropertyToXml(PropertyDefinition property)
             => new XElementBuilder("member", "name", GetXmlName(property))
                 .AddRange(GetAnnotationsXml(property))
                 .AddRange(GetParametersXml(property.Parameters))
                 .Element;
 
-        [CanBeNull]
-        static XElement FieldToXml([NotNull] FieldDefinition field)
+        private static XElement? FieldToXml(FieldDefinition field)
             => new XElementBuilder("member", "name", GetXmlName(field))
                 .AddRange(GetAnnotationsXml(field))
                 .Element;
 
-        [CanBeNull]
-        static XElement EventToXml([NotNull] EventDefinition @event)
+        private static XElement? EventToXml(EventDefinition @event)
             => new XElementBuilder("member", "name", GetXmlName(@event))
                 .AddRange(GetAnnotationsXml(@event))
                 .Element;
 
-        [CanBeNull]
-        static IEnumerable<XElement> TypeToXml([NotNull] TypeDefinition type)
+        private static IEnumerable<XElement> TypeToXml(TypeDefinition type)
             => GetMethodsXml(type)
                 .Concat(GetPropertiesXml(type))
                 .Concat(GetFieldsXml(type))
                 .Concat(GetEventsXml(type))
-                .Prepend(new XElementBuilder("member", "name", GetXmlName(type))
+                .PrependIfNotNull(new XElementBuilder("member", "name", GetXmlName(type))
                     .AddRange(GetAnnotationsXml(type))
                     .AddRange(GetGenericParametersXml(type))
                     .Element);
 
-        [NotNull]
-        static XElement AssemblyToXml([NotNull] AssemblyDefinition assembly)
+        private static XElement AssemblyToXml(AssemblyDefinition assembly)
             => new XElementBuilder("assembly", "name", GetXmlName(assembly))
                 .AddRange(GetTypesXml(assembly))
                 .EnsureElement();
-
-        #endregion
     }
 }

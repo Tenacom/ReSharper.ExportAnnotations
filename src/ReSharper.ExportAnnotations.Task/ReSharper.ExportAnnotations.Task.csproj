@@ -9,6 +9,7 @@
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 
     <!-- Package metadata -->
+    <IsPackable>true</IsPackable>
     <Summary>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Summary>
     <Description>Documentation is available here: https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/master/README.md</Description>
     <PackageTags>build;msbuild</PackageTags>
@@ -16,9 +17,6 @@
     <DevelopmentDependency>true</DevelopmentDependency>
     <Serviceable>true</Serviceable>
     <MinClientVersion>4.3</MinClientVersion> <!-- Minimum NuGet client version supporting SemVer 2.0 -->
-
-    <!-- The package *is* the build output. -->
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
     <!-- Prevent the SDK from adding an actual ProjectReference item for ExportAnnotations.
          The dependency on ExportAnnotations is set in the solution file.

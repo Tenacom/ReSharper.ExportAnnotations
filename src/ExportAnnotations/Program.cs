@@ -26,6 +26,13 @@ namespace ExportAnnotations
         [UsedImplicitly]
         public string AssemblyPath { get; } = string.Empty;
 
+        [Option(
+            Description = "Do not export annotations (but strip them if --strip is specified)",
+            LongName = "no-export",
+            ShortName = "n")]
+        [UsedImplicitly]
+        public bool NoExport { get; }
+
         [Argument(1, "xmlPath", Description = "Full path of the generated XML file (defaults to a .ExternalAnnotations.xml file side by side with the assembly)")]
         [LegalFilePath]
         [UsedImplicitly]
@@ -62,6 +69,7 @@ namespace ExportAnnotations
                 : Array.Empty<string>();
 
             var parameters = new AnnotationsExporterParameters()
+                .WithExportAnnotations(!NoExport)
                 .WithXmlPath(XmlPath)
                 .WithLibraries((LibraryPaths ?? Enumerable.Empty<string>()).Concat(listedLibraries))
                 .WithStripAnnotations(Strip);

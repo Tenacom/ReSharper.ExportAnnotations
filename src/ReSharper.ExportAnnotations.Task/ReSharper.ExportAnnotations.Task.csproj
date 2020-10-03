@@ -10,9 +10,9 @@
 
     <!-- Package metadata -->
     <IsPackable>true</IsPackable>
-    <Summary>MSBuild task to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Summary>
+    <Summary>Helps you distribute a .ExternalAnnotations.xml file instead of creating a dependency on JetBrains.Annotations.</Summary>
     <Description>Documentation is available here: https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/master/README.md</Description>
-    <PackageTags>build;msbuild</PackageTags>
+    <PackageTags>build msbuild jetbrains resharper annotations</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>
     <Serviceable>true</Serviceable>
     <MinClientVersion>4.3</MinClientVersion> <!-- Minimum NuGet client version supporting SemVer 2.0 -->
@@ -45,13 +45,13 @@
       <__ToolTargetFramework Include="netcoreapp2.1" />
     </ItemGroup>
 
-    <!-- Publish the tool's project for each target framework -->
+    <!-- Publish the tool's project for each target framework. -->
     <MSBuild Projects="$(__ToolProject)" Targets="Publish" Properties="Configuration=$(Configuration);PublishDir=$(__ToolPublishPath)%(__ToolTargetFramework.Identity);PublishProtocol=FileSystem;TargetFramework=%(__ToolTargetFramework.Identity);SelfContained=false" />
-    
+
     <ItemGroup>
-      <!-- Include published output as content, setting appropriate package paths -->
+      <!-- Include published output as content, setting appropriate package paths. -->
       <Content Include="$(__ToolPublishPath)%(__ToolTargetFramework.Identity)\*" PackagePath="tools\%(__ToolTargetFramework.Identity)\" Visible="false" />
-      <!-- Don't include .pdb files in non-debug configurations (i.e. Release) -->
+      <!-- Don't include .pdb files in non-debug configurations (i.e. Release). -->
       <Content Remove="$(__ToolPublishPath)%(__ToolTargetFramework.Identity)\*.pdb" Condition="'$(Configuration)' != 'Debug'" />
     </ItemGroup>
 

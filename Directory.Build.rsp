@@ -1,0 +1,2 @@
+# MSBuild (both 16.7 and 16.8 preview) seems to get the project build order wrong unless we do this.
+-maxCpuCount:1

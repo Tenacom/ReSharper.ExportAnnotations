@@ -4,6 +4,23 @@
     <MSBuildAllProjects Condition="'$(MSBuildToolsVersion)' != 'Current'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
 
+  <!-- Unless set otherwise, the package containing the annotations DLL is JetBrains.Annotations. -->
+  <PropertyGroup>
+    <JetBrainsAnnotationsPackageName Condition="'$(JetBrainsAnnotationsPackageName)' == ''">JetBrains.Annotations</JetBrainsAnnotationsPackageName>
+  </PropertyGroup>
+
+  <!-- Unless set otherwise, CheckForJetBrainsAnnotationsPackageReference is true. -->
+  <PropertyGroup>
+    <CheckForJetBrainsAnnotationsPackageReference Condition="'$(CheckForJetBrainsAnnotationsPackageReference)' == ''">true</CheckForJetBrainsAnnotationsPackageReference>
+    <CheckForJetBrainsAnnotationsPackageReference Condition="'$(CheckForJetBrainsAnnotationsPackageReference)' != 'true'">false</CheckForJetBrainsAnnotationsPackageReference>
+  </PropertyGroup>
+
+  <!-- Unless set otherwise, UpdateJetBrainsAnnotationsPackageReference is true. -->
+  <PropertyGroup>
+    <UpdateJetBrainsAnnotationsPackageReference Condition="'$(UpdateJetBrainsAnnotationsPackageReference)' == ''">true</UpdateJetBrainsAnnotationsPackageReference>
+    <UpdateJetBrainsAnnotationsPackageReferencee Condition="'$(UpdateJetBrainsAnnotationsPackageReference)' != 'true'">false</UpdateJetBrainsAnnotationsPackageReferencee>
+  </PropertyGroup>
+
   <!-- Unless set otherwise, ExportJetBrainsAnnotations is true for libraries, false for other projects. -->
   <PropertyGroup Condition="'$(ExportJetBrainsAnnotations)' == ''">
     <ExportJetBrainsAnnotations Condition="'$(OutputType)' != 'Library'">false</ExportJetBrainsAnnotations>
@@ -18,6 +35,16 @@
     <StripJetBrainsAnnotations Condition="'$(StripJetBrainsAnnotations)' == ''">true</StripJetBrainsAnnotations>
     <StripJetBrainsAnnotations Condition="'$(StripJetBrainsAnnotations)' != 'true'">false</StripJetBrainsAnnotations>
   </PropertyGroup>
+
+  <!--
+    Make sure the annotations DLL is not included in the project output.
+    This will have no effect if there is no PackageReference to the annotations package.
+  -->
+  <ItemGroup Condition="$(UpdateJetBrainsAnnotationsPackageReference)">
+    <PackageReference Update="$(JetBrainsAnnotationsPackageName)"
+                      IncludeAssets="compile"
+                      PrivateAssets="all" />
+  </ItemGroup>
 
   <Import Condition="'$(RebuildingWithoutJetBrainsAnnotations)' != 'true'"
           Project="ReSharper.ExportAnnotations.Task.Building.targets" />

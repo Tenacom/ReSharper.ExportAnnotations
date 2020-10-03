@@ -4,6 +4,7 @@
     <PackageVersion Include="Cecil.XmlDocNames" Version="1.1.1" />
     <PackageVersion Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
     <PackageVersion Include="Microsoft.Packaging.Tools.Trimming" Version="1.1.0-preview1-26619-01" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.0.0" />
     <PackageVersion Include="Mono.Cecil" Version="0.11.2" />
   </ItemGroup>
 

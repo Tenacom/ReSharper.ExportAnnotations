@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New features
 
+### Changes to existing features
+
+### Bugs fixed in this release
+
+### Known problems introduced by this release
+
+## [1.2.0](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.2.0) (2020-10-04)
+
+### New features
+
 - `ReSharper.ExportAnnotations.Core` is now distributed with a symbol package, thanks to [SourceLink](https://github.com/dotnet/sourcelink).
 - `ReSharper.ExportAnnotations.Task` checks for the presence of a package reference to `JetBrains.Annotations`, issuing a build-time error if it is missing. This functionality may be disabled by setting the `CheckForJetBrainsAnnotationsPackageReference` property to `false`.
 - `ReSharper.ExportAnnotations.Task` automatically updates the package reference to `JetBrains.Annotations`, ensuring that it is treated as a development dependency. This functionality may be disabled by setting the `UpdateJetBrainsAnnotationsPackageReferencee` property to `false`.
@@ -22,8 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - https://github.com/tenacom/ReSharper.ExportAnnotations/issues/2 - Stripping annotations also strips the signature away from strong-named assemblies
 - https://github.com/tenacom/ReSharper.ExportAnnotations/issues/13 - Stripping annotations also removes the portable PDB checksum
-
-### Known problems introduced by this release
 
 ## [1.1.0](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.1.0) (2020-09-17)
 

@@ -18,12 +18,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.1.0) (2020-09-17)
 
 ### New features
+
 - `ExportAnnotations` has a new `--no-export` option to skip the exporting phase entirely.
 
 ### Changes to existing features
+
 - Ownership of the project changed from @rdeago to @Tenacom.
 
 ### Bugs fixed in this release
+
 - https://github.com/tenacom/ReSharper.ExportAnnotations/issues/3 - ReSharper.ExportAnnotations.Task does not work with `dotnet build` and `dotnet msbuild`
 - https://github.com/tenacom/ReSharper.ExportAnnotations/issues/6 - Annotations are not stripped from executables
 

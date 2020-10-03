@@ -37,6 +37,14 @@
     <Error Condition="'$(_ExportAnnotationsCommand)' == ''"
            Text="ReSharper.ExportAnnotations.Task: unsupported MSBuild runtime type '$(MSBuildRuntimeType)' (only Core, Full, and Mono are supported)" />
 
+    <!-- Check for the presence of a PackageReference to the annotations package. -->
+    <PropertyGroup>
+      <_JetBrainsAnnotationsPackageReferenceIsPresent>false</_JetBrainsAnnotationsPackageReferenceIsPresent>
+      <_JetBrainsAnnotationsPackageReferenceIsPresent Condition="'%(PackageReference.Identity)' == '$(JetBrainsAnnotationsPackageName)'">true</_JetBrainsAnnotationsPackageReferenceIsPresent>
+    </PropertyGroup>
+    <Error Condition="$(CheckForJetBrainsAnnotationsPackageReference) And !$(_JetBrainsAnnotationsPackageReferenceIsPresent)"
+           Text="There is no PackageReference to '$(JetBrainsAnnotationsPackageName)'. Either add it, or disable this check by setting the CheckForJetBrainsAnnotationsPackageReference to false." />
+
   </Target>
 
   <!-- Run tool immediately after compiler -->

@@ -7,8 +7,15 @@
     <Owners>Tenacom</Owners>
     <Company>Tenacom</Company>
     <Copyright>Copyright (c) 2018-2020 Riccardo De Agostini and Tenacom</Copyright>
-    <PackageReleaseNotes>A changelog is available at $(PackageProjectUrl)/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/Buildvana/Buildvana</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!-- Repository and documentation -->
+  <PropertyGroup>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Buildvana/Buildvana.Sdk</RepositoryUrl>
+    <PackageReleaseNotes>Release notes are available at $(RepositoryUrl)/blob/master/CHANGELOG.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Common build options -->
@@ -30,5 +37,18 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
+
+  <!-- SourceLink -->
+
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" />
+  </ItemGroup>
 
 </Project>

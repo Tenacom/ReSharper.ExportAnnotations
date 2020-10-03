@@ -10,8 +10,9 @@
 
     <!-- Package metadata -->
     <IsPackable>true</IsPackable>
+    <IncludeSymbols>false</IncludeSymbols>
     <Summary>Helps you distribute a .ExternalAnnotations.xml file instead of creating a dependency on JetBrains.Annotations.</Summary>
-    <Description>Documentation is available here: https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/master/README.md</Description>
+    <Description>Documentation is available here: $(RepositoryUrl)/blob/master/README.md</Description>
     <PackageTags>build msbuild jetbrains resharper annotations</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>
     <Serviceable>true</Serviceable>

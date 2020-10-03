@@ -9,9 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New features
 
+- `ReSharper.ExportAnnotations.Task` checks for the presence of a package reference to `JetBrains.Annotations` (or a different name specified via the `JetBrainsAnnotationsPackageName` property), issuing a build-time error if it is missing. This functionality may be disabled by setting the `CheckForJetBrainsAnnotationsPackageReference` property to `false`.
+- `ReSharper.ExportAnnotations.Task` automatically updates the package reference to `JetBrains.Annotations` (or a different name specified via the `JetBrainsAnnotationsPackageName` property), ensuring that it is treated as a development dependency. This functionality may be disabled by setting the `UpdateJetBrainsAnnotationsPackageReferencee` property to `false`.
+
 ### Changes to existing features
 
+- `ReSharper.ExportAnnotations.Task` does no more strip annotations from compiled assemblies; instead, it invokes the Build target again without the `JETBRAINS_ANNOTATIONS` constant. This avoids the problems caused by the `Mono.Cecil` library not saving assemblies properly (see https://github.com/tenacom/ReSharper.ExportAnnotations/issues/2, https://github.com/tenacom/ReSharper.ExportAnnotations/issues/13, and https://github.com/jbevain/cecil/issues/610 for details). Note that the `--strip` parameter of `ExportAnnotations` and the associated functionality remain unchanged, although they may be removed or deprecated in a future release.
+
 ### Bugs fixed in this release
+
+- https://github.com/tenacom/ReSharper.ExportAnnotations/issues/2 - Stripping annotations also strips the signature away from strong-named assemblies
+- https://github.com/tenacom/ReSharper.ExportAnnotations/issues/13 - Stripping annotations also removes the portable PDB checksum
 
 ### Known problems introduced by this release
 

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New features
 
+- `ReSharper.ExportAnnotations.Core` is now distributed with a symbol package, thanks to [SourceLink](https://github.com/dotnet/sourcelink).
 - `ReSharper.ExportAnnotations.Task` checks for the presence of a package reference to `JetBrains.Annotations`, issuing a build-time error if it is missing. This functionality may be disabled by setting the `CheckForJetBrainsAnnotationsPackageReference` property to `false`.
 - `ReSharper.ExportAnnotations.Task` automatically updates the package reference to `JetBrains.Annotations`, ensuring that it is treated as a development dependency. This functionality may be disabled by setting the `UpdateJetBrainsAnnotationsPackageReferencee` property to `false`.
 - The name of the package containing the annotations DLL, for the purposes of the two features described above, may be specified via the `JetBrainsAnnotationsPackageName` property. When no name is specified, the default is `JetBrains.Annotations`.

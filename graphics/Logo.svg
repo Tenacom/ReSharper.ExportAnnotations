@@ -7,138 +7,104 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:export-ydpi="96"
-   inkscape:export-xdpi="96"
-   inkscape:export-filename="D:\Projects\OpenSource\ReSharper.ExportAnnotations\graphics\Logo.png"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   height="50"
-   width="370"
-   sodipodi:docname="Logo.svg"
-   id="svg42"
-   version="1.1"
-   clip-rule="evenodd"
-   fill-rule="evenodd"
-   y="0px"
-   x="0px"
-   viewBox="0 0 370.00001 50.000001"
-   style="image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-   xml:space="preserve">
-  <metadata
-   id="metadata46">
-    <rdf:RDF>
-      <cc:Work
-   rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-
-        <dc:type
-   rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-
-        <dc:title></dc:title>
-
-      </cc:Work>
-
-    </rdf:RDF>
-
-  </metadata>
-
-  <sodipodi:namedview
-   inkscape:object-nodes="false"
-   inkscape:snap-page="true"
-   inkscape:bbox-nodes="true"
-   inkscape:snap-bbox="true"
-   inkscape:current-layer="svg42"
-   inkscape:window-maximized="1"
-   inkscape:window-y="-8"
-   inkscape:window-x="-8"
-   inkscape:cy="25"
-   inkscape:cx="183.79854"
-   inkscape:zoom="5.2475933"
-   inkscape:pagecheckerboard="true"
-   fit-margin-bottom="0"
-   fit-margin-right="0"
-   fit-margin-left="0"
-   fit-margin-top="0"
-   showgrid="false"
-   id="namedview44"
-   inkscape:window-height="1377"
-   inkscape:window-width="2560"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0"
-   guidetolerance="10"
-   gridtolerance="10"
-   objecttolerance="10"
-   borderopacity="1"
-   inkscape:document-rotation="0"
-   bordercolor="#666666"
-   pagecolor="#ffffff" />
-
-  <defs
-   id="defs4">
-    <style
-   id="style2"
-   type="text/css">
-   
-    .fil1 {fill:black}
-    .fil0 {fill:black;fill-rule:nonzero}
-   
-  </style>
-
-  </defs>
-
-  
-
-  
-
-  
-
-<text
    xml:space="preserve"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.7803px;line-height:1.25;font-family:'Blogger Sans';-inkscape-font-specification:'Blogger Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.848528"
-   x="62.86953"
-   y="30.565195"
-   id="text851"
-   transform="scale(0.84852814,1.1785113)"><tspan
-     y="30.565195"
-     x="62.86953"
-     id="tspan872"
-     sodipodi:role="line"><tspan
-       id="tspan874"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Blogger Sans';-inkscape-font-specification:'Blogger Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">ReSharper.</tspan><tspan
-       id="tspan876"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;font-family:'Blogger Sans';-inkscape-font-specification:'Blogger Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">ExportAnnotations</tspan></tspan></text>
-<g
    style="image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-   id="g850"
-   transform="scale(0.390625)"><rect
-     ry="20"
-     y="0"
-     x="0"
-     height="128"
-     width="128"
-     id="rect929"
-     style="display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" /><rect
-     ry="8"
-     y="12"
-     x="12"
-     height="104"
-     width="104"
-     id="rect931"
-     style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision" /><text
-     id="text851-1"
-     y="78.958015"
-     x="20.060547"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+   viewBox="0 0 540.00001 50.000001"
+   x="0px"
+   y="0px"
+   fill-rule="evenodd"
+   clip-rule="evenodd"
+   version="1.1"
+   id="svg42"
+   sodipodi:docname="Logo.svg"
+   width="540"
+   height="50"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   inkscape:export-filename="D:\Projects\OpenSource\ReSharper.ExportAnnotations\graphics\Logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"><metadata
+     id="metadata46"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     inkscape:document-rotation="0"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     id="namedview44"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:zoom="3.614519"
+     inkscape:cx="266.84048"
+     inkscape:cy="25"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg42"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-page="true"
+     inkscape:object-nodes="false"><inkscape:grid
+       empspacing="4"
+       id="grid841"
+       type="xygrid" /></sodipodi:namedview><defs
+     id="defs4"><style
+       type="text/css"
+       id="style2">.fil1 {fill:black}
+.fil0 {fill:black;fill-rule:nonzero}</style></defs><text
+     id="text851"
+     y="38.444649"
+     x="53.433998"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42px;line-height:1.25;font-family:'Blogger Sans';-inkscape-font-specification:'Blogger Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      xml:space="preserve"><tspan
-       y="78.958015"
-       x="20.060547"
-       id="tspan941"
-       sodipodi:role="line">string s;</tspan></text><text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#cc0000;fill-opacity:1;stroke:#660000;stroke-width:0.75px;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     x="19.009766"
-     y="59.456047"
-     id="text873"><tspan
+       transform="translate(0,-2.6086487)"
+       style="stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        sodipodi:role="line"
-       x="19.009766"
+       id="tspan872"
+       x="53.433998"
+       y="38.444649">ReSharper.ExportAnnotations</tspan></text><g
+     transform="scale(0.390625)"
+     id="g850"
+     style="image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"><rect
+       style="display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect929"
+       width="128"
+       height="128"
+       x="0"
+       y="0"
+       ry="20" /><rect
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect931"
+       width="104"
+       height="104"
+       x="12"
+       y="12"
+       ry="8" /><text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="20.060547"
+       y="78.958015"
+       id="text851-1"><tspan
+         sodipodi:role="line"
+         id="tspan941"
+         x="20.060547"
+         y="78.958015">string s;</tspan></text><text
+       id="text873"
        y="59.456047"
-       id="tspan871">[NotNull]</tspan></text></g></svg>
+       x="19.009766"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#cc0000;fill-opacity:1;stroke:#660000;stroke-width:0.75px;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan871"
+         y="59.456047"
+         x="19.009766"
+         sodipodi:role="line">[NotNull]</tspan></text></g></svg>

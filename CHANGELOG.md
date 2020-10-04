@@ -11,14 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes to existing features
 
+### Bugs fixed in this release
+
+### Known problems introduced by this release
+
+## [1.2.1](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.2.1) (2020-10-04)
+
+### Changes to existing features
+
 - `ReSharper.ExportAnnotations.Task` now skips most operations, including sanity checks, during [design-time builds](https://github.com/dotnet/project-system/blob/master/docs/design-time-builds.md).
 
 ### Bugs fixed in this release
 
 - `ReSharper.ExportAnnotations.Core`'s symbol package now contains correct links to source code.
 - Projects referencing `ReSharper.ExportAnnotations.Task` but not referencing `JetBrains.Annotations` will now load correctly in Visual Studio. They will still not restore or build until a reference to `JetBrains.Annotations` is added, or [the check for it is disabled](README.md#skipping-the-check-for-the-code-annotations-package-reference).
-
-### Known problems introduced by this release
 
 ## [1.2.0](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.2.0) (2020-10-04)
 

@@ -15,7 +15,6 @@
     <PackageTags>build msbuild jetbrains resharper annotations</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>
     <Serviceable>true</Serviceable>
-    <MinClientVersion>4.3</MinClientVersion> <!-- Minimum NuGet client version supporting SemVer 2.0 -->
 
     <!-- Prevent the SDK from adding an actual ProjectReference item for ExportAnnotations.
          The dependency on ExportAnnotations is set in the solution file.

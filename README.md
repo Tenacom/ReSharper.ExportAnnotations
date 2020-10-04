@@ -8,11 +8,9 @@
 [![Open issues](https://img.shields.io/github/issues-raw/Tenacom/ReSharper.ExportAnnotations.svg?label=open+issues)](https://github.com/Tenacom/ReSharper.ExportAnnotations/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 [![Closed issues](https://img.shields.io/github/issues-closed-raw/Tenacom/ReSharper.ExportAnnotations.svg?label=closed+issues)](https://github.com/Tenacom/ReSharper.ExportAnnotations/issues?q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc)
 
-Welcome to the ultimate solution for [ReSharper](https://www.jetbrains.com/resharper/) users who want to distribute [code annotations](https://www.jetbrains.com/help/resharper/Reference__Code_Annotation_Attributes.html) along with their libraries, without the burden of [additional dependencies](https://www.nuget.org/packages/JetBrains.Annotations) or [extraneous code](https://www.jetbrains.com/help/resharper/Code_Analysis__Annotations_in_Source_Code.html#embedding-declarations-of-code-annotations-in-your-source-code) added to their projects!
+The ultimate, one-stop solution to distribute ReSharper<sup>[(*)](#jetbrains-disclaimer)</sup> code annotations in XML format along with your libraries.
 
-Enjoy ReSharper finally recognizing your `[NotNull]`, `[CanBeNull]`, `[ContractAnnotation]`, `[InstantHandle]`, and all other code annotations, without dragging transitive dependencies around, and without [redeclaring the same attributes](https://www.jetbrains.com/help/resharper/Code_Analysis__Annotations_in_Source_Code.html#embedding-declarations-of-code-annotations-in-your-source-code) over and over.
-
-*Disclaimer:* The author of this library is in no way affiliated to [JetBrains s.r.o.](https://www.jetbrains.com/) (the makers of ReSharper).
+Enjoy ReSharper recognizing your code annotations when working on dependent projects, without dragging transitive dependencies around, and without [redeclaring the same attributes](https://www.jetbrains.com/help/resharper/Code_Analysis__Annotations_in_Source_Code.html#embedding-declarations-of-code-annotations-in-your-source-code) over and over.
 
 ---
 
@@ -138,3 +136,7 @@ You may disable this check by setting the `CheckForJetBrainsAnnotationsPackageRe
 The font used in the package icon is [Inconsolata Bold](https://fontlibrary.org/en/font/inconsolata#Inconsolata-Bold) by Raph Levien, Kirill Tkachev (cyreal.org), from [Font Library](https://fontlibrary.org).
 
 The font used in the logo is [BloggerSans.otf](https://fontlibrary.org/en/font/blogger-sans-otf) by Sergiy S. Tkachenko, from [Font Library](https://fontlibrary.org).
+
+---
+
+<a name="jetbrains-disclaimer">(*)</a> [ReSharper](https://www.jetbrains.com/resharper) is a product of [JetBrains s.r.o.](https://www.jetbrains.com). The authors and owners of this project are not affiliated with JetBrains in any way. The use of the ReSharper name does not imply endorsement of this project by JetBrains.

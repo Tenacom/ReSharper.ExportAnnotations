@@ -1,4 +1,4 @@
-A library to export ReSharper code annotations from compiled assemblies in XML format.
+A library to export ReSharper code annotations in XML format from compiled assemblies.
 
 Unless you specifically need this library, you are probably looking for [`ReSharper.ExportAnnotations.Task`](https://www.nuget.org/packages/ReSharper.ExportAnnotations.Task), the ultimate, one-stop solution to distribute code annotations in XML format along with your libraries.
 

@@ -11,7 +11,6 @@
     <!-- Package metadata -->
     <IsPackable>true</IsPackable>
     <IncludeSymbols>false</IncludeSymbols>
-    <Summary>Helps you distribute a .ExternalAnnotations.xml file instead of creating a dependency on JetBrains.Annotations.</Summary>
     <Description>The ultimate, one-stop solution to distribute ReSharper code annotations in XML format along with your libraries.</Description>
     <PackageTags>build msbuild jetbrains resharper annotations</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>

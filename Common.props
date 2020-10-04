@@ -9,6 +9,7 @@
     <Copyright>Copyright (c) 2018-2020 Riccardo De Agostini and Tenacom</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/Tenacom/ReSharper.ExportAnnotations</PackageProjectUrl>
+    <MinClientVersion>4.3</MinClientVersion> <!-- Minimum NuGet client version supporting SemVer 2.0 -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

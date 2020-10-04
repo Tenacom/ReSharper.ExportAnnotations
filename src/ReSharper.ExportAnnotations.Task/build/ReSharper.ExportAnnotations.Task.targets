@@ -46,10 +46,10 @@
                       PrivateAssets="all" />
   </ItemGroup>
 
-  <Import Condition="'$(RebuildingWithoutJetBrainsAnnotations)' != 'true'"
+  <Import Condition="'$(DesignTimeBuild)' != 'true' And '$(RebuildingWithoutJetBrainsAnnotations)' != 'true'"
           Project="ReSharper.ExportAnnotations.Task.Building.targets" />
 
-  <Import Condition="'$(RebuildingWithoutJetBrainsAnnotations)' == 'true'"
+  <Import Condition="'$(DesignTimeBuild)' != 'true' And '$(RebuildingWithoutJetBrainsAnnotations)' == 'true'"
           Project="ReSharper.ExportAnnotations.Task.Rebuilding.targets" />
 
   <!-- Add external annotations file to package -->

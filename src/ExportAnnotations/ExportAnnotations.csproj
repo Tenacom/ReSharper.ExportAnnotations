@@ -5,12 +5,10 @@
     <OutputType>Exe</OutputType>
     <Description>Command-line utility to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
     <IsPackable>false</IsPackable>
-    <TrimUnusedFiles>true</TrimUnusedFiles>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" />
-    <PackageReference Include="Microsoft.Packaging.Tools.Trimming" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>

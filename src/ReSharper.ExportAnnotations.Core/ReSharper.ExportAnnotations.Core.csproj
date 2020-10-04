@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <RootNamespace>ReSharper.ExportAnnotations</RootNamespace>
-    <Description>Utility library to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
+    <Description>A library to export ReSharper code annotations in XML format from compiled assemblies.</Description>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 

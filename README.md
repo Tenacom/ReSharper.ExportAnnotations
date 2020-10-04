@@ -1,4 +1,4 @@
-# ![](https://raw.githubusercontent.com/Tenacom/ReSharper.ExportAnnotations/main/graphics/Logo.png) ReSharper.ExportAnnotations
+# ![ReSharper.ExportAnnotations](https://raw.githubusercontent.com/Tenacom/ReSharper.ExportAnnotations/main/graphics/Logo.png)
 
 [![License](https://img.shields.io/github/license/Tenacom/ReSharper.ExportAnnotations.svg)](https://github.com/Tenacom/ReSharper.ExportAnnotations/blob/main/LICENSE)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Tenacom/ReSharper.ExportAnnotations?include_prereleases)](https://github.com/Tenacom/ReSharper.ExportAnnotations/releases)
@@ -8,106 +8,133 @@
 [![Open issues](https://img.shields.io/github/issues-raw/Tenacom/ReSharper.ExportAnnotations.svg?label=open+issues)](https://github.com/Tenacom/ReSharper.ExportAnnotations/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 [![Closed issues](https://img.shields.io/github/issues-closed-raw/Tenacom/ReSharper.ExportAnnotations.svg?label=closed+issues)](https://github.com/Tenacom/ReSharper.ExportAnnotations/issues?q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc)
 
-If you find this project useful, please **:star: star it**. Thank you!
+Welcome to the ultimate solution for [ReSharper](https://www.jetbrains.com/resharper/) users who want to distribute [code annotations](https://www.jetbrains.com/help/resharper/Reference__Code_Annotation_Attributes.html) along with their libraries, without the burden of [additional dependencies](https://www.nuget.org/packages/JetBrains.Annotations) or [extraneous code](https://www.jetbrains.com/help/resharper/Code_Analysis__Annotations_in_Source_Code.html#embedding-declarations-of-code-annotations-in-your-source-code) added to their projects!
 
-## The problem
+Enjoy ReSharper finally recognizing your `[NotNull]`, `[CanBeNull]`, `[ContractAnnotation]`, `[InstantHandle]`, and all other code annotations, without dragging transitive dependencies around, and without [redeclaring the same attributes](https://www.jetbrains.com/help/resharper/Code_Analysis__Annotations_in_Source_Code.html#embedding-declarations-of-code-annotations-in-your-source-code) over and over.
 
-Let's say you have written a wonderful .NET library that you want to share with the whole world, or just among your own projects.
+*Disclaimer:* The author of this library is in no way affiliated to [JetBrains s.r.o.](https://www.jetbrains.com/) (the makers of ReSharper).
 
-Let's also say that you, just like me, use [ReSharper](https://www.jetbrains.com/resharper/) for static code analysis, and have constellated your library's code with those nice annotations: `[NotNull]`, `[CanBeNull]`, `[ItemNotNull]`, `[InstantHandle]`, etc. etc. (the complete list is [here](https://www.jetbrains.com/help/resharper/Reference__Code_Annotation_Attributes.html) in case you're curious).
+---
 
-Code annotations are cool, but once you've wrapped your library in a nice NuGet package, how can ReSharper know about the annotations it contains? So far, your options were:
-1. Either reference the `JetBrains.Annotations` package in your NuGet package, making it a transient dependency for _all_ projects using your library, and ending up with `JetBrains.Annotations.dll` in your executable directory, where it definitely serves no purpose at all...
-2. ...or you can [embed code annotation declarations in your cource code](https://www.jetbrains.com/help/resharper/Code_Analysis__Annotations_in_Source_Code.html#embedding-declarations-of-code-annotations-in-your-source-code). For each project. If you call _this_ an option, that is. I personally do not.
-3. You may also _not_ define the `JETBRAINS_ANNOTATIONS` constant when you build your package, thus giving up annotations completely and making code analysis harder and less precise in dependent projects.
+- [Quick start](#quick-start)
+- [How it works](#how-it-works)
+- [FAQ](#faq)
+- [Configuration](#configuration)
+  - [Exporting / not exporting code annotations](#exporting--not-exporting-code-annotations)
+  - [Stripping / not stripping code annotations](#stripping--not-stripping-code-annotations)
+  - [Using a different package for code annotations](#using-a-different-package-for-code-annotations)
+  - [Skipping the check for the code annotations package reference](#skipping-the-check-for-the-code-annotations-package-reference)
+- [Credits](#credits)
 
-Let's be honest: all three options above suck. Either you have to distribute an utterly useless assembly, or you end up with more code to build and maintain, or you just give up a big part of what makes ReSharper worth its price (not to mention loading time).
+---
 
-A fourth option would be to use [Fody](https://github.com/Fody/Fody) with the [JetBrainsAnnotations.Fody](https://github.com/tom-englert/JetBrainsAnnotations.Fody) plugin, that does exactly what this task does. Which is fine, if you _already_ use Fody; otherwise, you have to create a configuration file for it, then reference _two_ packages (Fody itself and the plugin). I've never tried it: it most probably works fine. I was looking for a simpler solution, though, so here it is.
+## Quick start
 
-## The solution
-```xml
-<!-- YourLibrary.csproj -->
-<Project Sdk="Microsoft.NET.Sdk"> <!-- It works on legacy projects too (e.g. WinForms control libraries) -->
+1. Add package references to both [`ReSharper.ExportAnnotations.Task`](https://www.nuget.org/packages/ReSharper.ExportAnnotations.Task) and [`JetBrains.Annotations`](https://www.nuget.org/packages/Jetbrains.Annotations) to your library's `.csproj` or `.vbproj` file. You can either do it manually, or use Visual Studio Package Manager.
+2. **Do NOT add `JETBRAINS_ANNOTATIONS` to your project's `DefineConstants`!** Remove the constant if you had previously added it. Again, you can either manually edit the project file, or use Visual Studio's UI.
+3. Build and pack your library as usual.
+4. Just kidding, there is no step 4. :) An `<assembly_name>.ExternalAnnotations.xml` file has been added alongside your compiled assembly, both in the output directory and in the NuGet package. No `JetBrains.Annotations` dependency will be propagated to projects referencing your library.
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework> <!-- Actually you can use any TFM -->
-  </PropertyGroup>
+## How it works
 
-  <PropertyGroup>
-    <ExportJetBrainsAnnotations>true</ExportJetBrainsAnnotations> <!-- true by default when OutputType is "Library" -->
-    <StripJetBrainsAnnotations>true</StripJetBrainsAnnotations> <!-- true by default -->
-  </PropertyGroup>
+Here is, in a nutshell, how `ReSharper.ExportAnnotations.Task` performs its magic:
 
-  <ItemGroup>
-    <!-- Find out latest version here: https://www.nuget.org/packages/JetBrains.Annotations/
-         The task will work regardless of this version.
-    -->
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" /> <!-- Will not become a transient dependency -->
-    <PackageReference Include="ReSharper.ExportAnnotations.Task" Version="1.0.0" PrivateAssets="All" /> <!-- Only used during build -->
-  </ItemGroup>
+1. Add `JETBRAINS_ANNOTATIONS` to the project's `DefineConstants`.
+2. Just after the output assembly has been compiled, examine it looking for code annotations and export them in XML format. By default this step is performed only on libraries, not on executables, but this behavior [can be configured](#exporting--not-exporting-code-annotations).
+3. After the `Build` target has completed, if code annotations stripping is requested (which is true by default but [can be configured](#stripping--not-stripping-code-annotations)):
+   - delete the compiled assembly (otherwise the compiler wouldn't be invoked again, due to incremental building);
+   - run the `Build` target again without the `JETBRAINS_ANNOTATIONS` constant. The resulting assembly will have no annotations built in.
+4. If an XML file was generated in step 2, carry out some MSBuild trickery to make it an "official" part of the build output.
 
-</Project>
+## FAQ
+
+**Which languages are supported?**
+
+Both C# and Visual Basic projects whose build output is either a `.dll` or a `.exe` file are supported. Support for other languages may be added on request.
+
+**Are legacy (non-SDK) projects supported?**
+
+Yes, as long as they use `PackageReference`.
+
+**Does it work when building with .NET CLI / Mono / VS Code / Visual Studio / Visual Studio for Mac?**
+
+Yes, yes, yes, yes, and most probably. If you encounter problems when using `ReSharper.ExportAnnotations.Task` with your preferred toolchain, please [open an issue](https://github.com/tenacom/ReSharper.ExportAnnotations/issues/new/choose) to let us know.
+
+**Is the assembly's signature preserved?**
+
+In a word, yes. `ReSharper.ExportAnnotations.Task` does not modify assemblies: instead, it rebuilds them from scratch, thus ensuring that the final output assembly is every bit as good as if built without annotations from the get-go.
+
+**Is the PDB checksum preserved? Will I be able to distribute symbol packages?**
+
+Yes, of course. See the answer to the previous question.
+
+**What about my custom MSBuild targets running before / after Build? Will they run twice?**
+
+By default, yes they will: the `Build` target, with all its dependee and attached targets, will run twice for every `TargetPlatform`.
+
+There are two ways to prevent a custom build-related target from running twice:
+
+1. implement [incremental building](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-build-incrementally) to make sure a target does not run again if its outputs are already in sync with its inputs;
+2. check the value of the `RebuildingWithoutJetBrainsAnnotations` property and skip your target if it is equal to `true`, like this:
+
+```XML
+  <Target Name="TargetThatWillNotRunWhenRebuilding"
+          AfterTargets="Build"
+          Condition="'RebuildingWithoutJetBrainsAnnotations' != 'true'">
+
+    <!-- Anything your target does -->
+
+  </Target>
 ```
 
-That's all you need to do. Here's what happens when you build your project:
-* the `JETBRAINS_ANNOTATIONS` constant is automatically defined;
-* just after the compiler runs, your compiled assembly is scanned for ReSharper annotations;
-* all annotations of exposed types and members of exposed types are exported in an [external annotations file](https://www.jetbrains.com/help/resharper/Code_Analysis__External_Annotations.html);
-* the external annotations file is part of the build output, so it is also included in your NuGet package;
-* code annotations attributes, as well as the reference to `JetBrains.Annotations.dll`, are stripped from your assembly.
+**My solution's build process is so complicated that I have to drive it with an external program / a PowerShell script. Can I just export code annotations programmatically and take care of the rest myself?**
 
-Now, when you reference your library from another project, ReSharper will automatically load annotations from the external annotations file and use them just as if they were compiled into your assembly!
+Of course you can. Just reference [`ReSharper.ExportAnnotations.Core`](https://www.nuget.org/packages/ReSharper.ExportAnnotations.Core) (it's a .NET Standard 2.0 library) and take a look at the `AnnotationsExporter` class. It's very easy to use, has full XML documentation, and of course the package also contains external annotations.
 
-## Compatibility
+**I use a different package than `JetBrains.Annotations`. I get an error upon restore / build because there is no package reference to `JetBrains.Annotations`. What do I do?**
 
-In short, if you use MSBuild, you can use this task.
+You can either change the name of the required package, as explained [below](#using-a-different-package-for-code-annotations), or disable the check completely by following [these instructions](#skipping-the-check-for-the-code-annotations-package-reference).
 
-|         | .NET Framework | Mono  | .NET Core |
-| :------ | :------------: | :---: | :-------: |
-| Windows | Yes            | Yes   | Yes       |
-| OS/X    | _(n/a)_        | Yes   | Yes       |
-| Linux   | _(n/a)_        | Yes   | Yes       |
+**I use a custom MSBuild SDK that adds the `JetBrains.Annotations` package reference from `Sdk.targets`. I get the same error as in the previous question, although the package reference is actually there. What do I do?**
 
-## Caveats
+`Sdk.targets` from SDKs are evaluated after `.targets` files from packages; therefore, `ReSharper.ExportAnnotations.Task` will check for a `PackageReference` item that has yet to be added,
 
-### Building under Non-Windows operating systems
-If you build under a non-Windows operating system, the process of stripping annotations will also strip away debug symbols from your assembly. This is a limitation of the [Mono.Cecil](https://github.com/jbevain/cecil) library.
+In this case you have no other choice than to disable the check following [the instructions below](#skipping-the-check-for-the-code-annotations-package-reference).
 
-You may want to only strip annotations in Release mode. Be aware that this way your debug mode assembly will still reference `JetBrains.Annotations.dll`, which will become a transient dependency.
+## Configuration
 
-For example, given the project file above, to strip annotations only in Release mode you can add the following lines at the bottom of the file, just before the `</Project>` line:
+The behavior of `ReSharper.ExportAnnotations.Task` may be controlled using MSBuild properties.
 
-```xml
-  <PropertyGroup Condition="'$(Configuration)' != 'Release'">
-    <StripJetBrainsAnnotations>false</StripJetBrainsAnnotations>
-  </PropertyGroup>
+### Exporting / not exporting code annotations
 
-  <ItemGroup Condition="'$(Configuration)' != 'Release'">
-    <PackageReference Update="JetBrains.Annotations" PrivateAssets="" />
-  </ItemGroup>
-```
+Set the `ExportJetBrainsAnnotations` property to `true` to generate a `ExternalAnnotations.xml` file, `false` to skip the export phase.
 
-### Supported project types
+The default value is `true` for projects whose `OutputType` is `Library`, `false` for other projects.
 
-This task has been tested on `.csproj` project files, both "old-style" (no SDK) and using `Microsoft.NET.Sdk`.
+### Stripping / not stripping code annotations
 
-It may or may not work with other SDKs.
+Please note that "stripping" here does not mean that the assembly is modified: it is simply rebuilt without annotations.
 
-You should have no problems with `.vbproj` projects, other than the limitations stated above. Projects in languages other than C# and VB are currently not supported.
+Set the `StripJetBrainsAnnotations` property to `true` to rebuild the assembly without annotations, `false` to skip the rebuild phase.
 
-### Signed assemblies
+The default value is `true` for all projects.
 
-When stripping annotations from a signed assembly, the signature will be stripped as well.
+### Using a different package for code annotations
 
-Work on this is being tracked in issue #2.
+`ReSharper.ExportAnnotations.Task` automatically modifies the `PackageReference` item referencing `JetBrains.Annotations` to make sure it does not propagate as a transitive dependency.
+
+If for some reason you prefer to use another package to provide code annotations, just set the `JetBrainsAnnotationsPackageName` property to the name of your preferred package.
+
+You can also disable this feature completely by setting `UpdateJetBrainsAnnotationsPackageReference` to `false`. In this case, make sure that the `PrivateAssets` metadata on your package reference is set to `all`, lest every project referencing your library will also depend on the code annotations package, even if your distributed assembly contains no annotations.
+
+### Skipping the check for the code annotations package reference
+
+Before building, or even restoring dependencies, `ReSharper.ExportAnnotations.Task` checks whether a `PackageReference` exists for the package containing the code annotations DLL. This can either be `JetBrains.Annotations`, or any other name set via the `JetBrainsAnnotationsPackageName` property. If the reference is missing, the build is stopped with an error.
+
+You may disable this check by setting the `CheckForJetBrainsAnnotationsPackageReference` property to `false`.
 
 ## Credits
 
 The font used in the package icon is [Inconsolata Bold](https://fontlibrary.org/en/font/inconsolata#Inconsolata-Bold) by Raph Levien, Kirill Tkachev (cyreal.org), from [Font Library](https://fontlibrary.org).
 
 The font used in the logo is [BloggerSans.otf](https://fontlibrary.org/en/font/blogger-sans-otf) by Sergiy S. Tkachenko, from [Font Library](https://fontlibrary.org).
-
----
-
-*Disclaimer:* The author of this library is in no way affiliated to [JetBrains s.r.o.](https://www.jetbrains.com/) (the makers of ReSharper) other than being a satisfied cutomer.

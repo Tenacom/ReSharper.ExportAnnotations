@@ -32,7 +32,10 @@
 
   <!-- Collect the tool's published output for relevant target frameworks
        and include it in the package's 'tools' folder -->
-  <Target Name="__PublishTool" BeforeTargets="CoreBuild">
+  <PropertyGroup>
+    <BeforePack>$(BeforePack);__PublishTool</BeforePack>
+  </PropertyGroup>
+  <Target Name="__PublishTool">
 
     <PropertyGroup>
       <__ToolProject>..\ExportAnnotations\ExportAnnotations.csproj</__ToolProject>

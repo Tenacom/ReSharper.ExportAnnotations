@@ -40,8 +40,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <__ToolTargetFramework Include="net471" />
+      <__ToolTargetFramework Include="net46" />
+      <__ToolTargetFramework Include="net472" />
       <__ToolTargetFramework Include="netcoreapp2.1" />
+      <__ToolTargetFramework Include="netcoreapp3.1" />
+      <__ToolTargetFramework Include="net5.0" />
     </ItemGroup>
 
     <!-- Publish the tool's project for each target framework. -->

@@ -110,7 +110,11 @@ namespace ReSharper.ExportAnnotations
 
             var writerParameters = new WriterParameters
             {
+#if NETFRAMEWORK
+                WriteSymbols = true, // .NET Framework only runs on Windows
+#else
                 WriteSymbols = RuntimeInformation.IsOSPlatform(OSPlatform.Windows), // Symbol writer uses COM Interop, thus is Windows-only
+#endif
             };
             assembly.Write(writerParameters);
         }

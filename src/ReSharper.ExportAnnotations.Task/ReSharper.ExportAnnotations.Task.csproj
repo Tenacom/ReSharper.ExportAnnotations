@@ -3,7 +3,7 @@
   <PropertyGroup>
 
     <!-- The project system needs this. We don't. -->
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
 
     <!-- Remove the <dependencies> tag from .nupkg, because it makes the package "depend" on our TargetPlatform. -->
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>

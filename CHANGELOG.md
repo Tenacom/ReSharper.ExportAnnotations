@@ -9,9 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New features
 
+- `ReSharper.ExportAnnoTations.Core` now supports .NET Framework 4.6 in addition to .NET Standard 2.0.
+
 ### Changes to existing features
 
 ### Bugs fixed in this release
+
+- https://github.com/tenacom/ReSharper.ExportAnnotations/issues/20 - Building a project with `dotnet build` using .NET Core SDK v3.1 or .NET SDK 5-rc1 does not require.NET Core 2.1 to be installed any longer.
 
 ### Known problems introduced by this release
 

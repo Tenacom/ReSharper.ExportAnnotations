@@ -17,17 +17,17 @@
   <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Full'">
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &lt; '16.0'">net46</_ExportAnnotationsTfm>
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.0'">net472</_ExportAnnotationsTfm>
-    <_ExportAnnotationsCommand>$(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)\ExportAnnotations.exe</_ExportAnnotationsCommand>
+    <_ExportAnnotationsCommand>$(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)/ExportAnnotations.exe</_ExportAnnotationsCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &lt; '16.7'">netcoreapp2.1</_ExportAnnotationsTfm>
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.7' And '$(MSBuildVersion)' &lt; '16.8'">netcoreapp3.1</_ExportAnnotationsTfm>
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.8'">net5.0</_ExportAnnotationsTfm>
-    <_ExportAnnotationsCommand>dotnet $(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)\ExportAnnotations.dll</_ExportAnnotationsCommand>
+    <_ExportAnnotationsCommand>dotnet $(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)/ExportAnnotations.dll</_ExportAnnotationsCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Mono'">
     <_ExportAnnotationsTfm>net472</_ExportAnnotationsTfm>
-    <_ExportAnnotationsCommand>mono $(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)\ExportAnnotations.exe</_ExportAnnotationsCommand>
+    <_ExportAnnotationsCommand>mono $(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)/ExportAnnotations.exe</_ExportAnnotationsCommand>
   </PropertyGroup>
 
   <Target Name="_ExportAnnotations_CheckPreconditions">

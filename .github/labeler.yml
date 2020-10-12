@@ -1,11 +1,33 @@
+area-core:
+  - "src/ReSharper.ExportAnnotations.Core/**/*.cs"
+
+area-tool:
+  - "src/ExportAnnotations/**/*.cs"
+
+area-task:
+  - "src/ReSharper.ExportAnnotations.Task/**/*.cs"
+
+area-build:
+  - "**/*.sln"
+  - "**/*.csproj"
+  - "**/Common.props"
+  - "**/Common.targets"
+
 area-ci:
-  - any: ['.github/workflows/**/*']
+  - ".github/workflows/**/*"
+  - "lgtm.yml"
 
 area-deps:
-  - "**/PackageVersions.props"
+  - "**/Directory.Packages.props"
+  - "Directory.Build.props"
+  - "Directory.Build.targets"
 
 area-docs:
-  - any: ['.github/**/*', '**/LICENSE', '**/README.md', '**/THIRD-PARTY-NOTICES']
+  - "docs/**/*"
+  - "**/LICENSE"
+  - "**/README.md"
+  - "**/THIRD-PARTY-NOTICES"
 
 area-repo:
-  - any: ['.github/*.yml', '.github/**/*.md']
+  - ".github/*.yml"
+  - ".github/**/*.md"

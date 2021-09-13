@@ -11,13 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes to existing features
 
+### Bugs fixed in this release
+
+### Known problems introduced by this release
+
+## [1.3.2](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.3.2) (2021-09-13)
+
+### Changes to existing features
+
 - Now using [`Mono.Cecil` v0.11.4](https://github.com/jbevain/cecil/releases/tag/0.11.4).
 
 ### Bugs fixed in this release
 
 - `JetBrains.Annotations.dll`, or whatever is the specified annotations package, is now retained in the output folder if `StripJetBrainsAnnotations` is `false`.
-
-### Known problems introduced by this release
 
 ## [1.3.1](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.3.1) (2020-10-10)
 

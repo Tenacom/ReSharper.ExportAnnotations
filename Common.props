@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Product>ReSharper.ExportAnnotations</Product>
     <Authors>rdeago</Authors>
-    <Owners>Tenacom</Owners>
+    <Owners>tenacom.it</Owners>
     <Company>Tenacom</Company>
     <Copyright>Copyright (c) 2018-2021 Riccardo De Agostini and Tenacom</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

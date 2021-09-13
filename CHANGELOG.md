@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bugs fixed in this release
 
+- `JetBrains.Annotations.dll`, or whatever is the specified annotations package, is now retained in the output folder if `StripJetBrainsAnnotations` is `false`.
+
 ### Known problems introduced by this release
 
 ## [1.3.1](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.3.1) (2020-10-10)

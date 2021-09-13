@@ -36,14 +36,21 @@
     <StripJetBrainsAnnotations Condition="'$(StripJetBrainsAnnotations)' != 'true'">false</StripJetBrainsAnnotations>
   </PropertyGroup>
 
-  <!--
-    Make sure the annotations DLL is not included in the project output.
-    This will have no effect if there is no PackageReference to the annotations package.
-  -->
+  <!-- The annotations package must remain in the output folder only if annotations are not stripped. -->
+  <PropertyGroup>
+    <JetBrainsAnnotationsIncludeAssets>all</JetBrainsAnnotationsIncludeAssets>
+    <JetBrainsAnnotationsPrivateAssets>contentFiles;analyzers;build</JetBrainsAnnotationsPrivateAssets>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(StripJetBrainsAnnotations)">
+    <JetBrainsAnnotationsIncludeAssets>compile</JetBrainsAnnotationsIncludeAssets>
+    <JetBrainsAnnotationsPrivateAssets>all</JetBrainsAnnotationsPrivateAssets>
+  </PropertyGroup>
+
+  <!-- Update the PackageReference to the annotations package, if present. -->
   <ItemGroup Condition="$(UpdateJetBrainsAnnotationsPackageReference)">
     <PackageReference Update="$(JetBrainsAnnotationsPackageName)"
-                      IncludeAssets="compile"
-                      PrivateAssets="all" />
+                      IncludeAssets="$(JetBrainsAnnotationsIncludeAssets)"
+                      PrivateAssets="$(JetBrainsAnnotationsPrivateAssets)" />
   </ItemGroup>
 
   <Import Condition="'$(DesignTimeBuild)' != 'true' And '$(RebuildingWithoutJetBrainsAnnotations)' != 'true'"

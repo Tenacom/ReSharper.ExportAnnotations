@@ -31,6 +31,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSharper.ExportAnnotations
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportAnnotations", "src\ExportAnnotations\ExportAnnotations.csproj", "{032990EB-9A2F-472E-8A3E-AF540AAA0AC2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "- Local build", "- Local build", "{4F0A3CF4-F505-4D07-A1AE-2C0A1E341E8E}"
+	ProjectSection(SolutionItems) = preProject
+		build-config.cmd = build-config.cmd
+		build.cmd = build.cmd
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		global.json = global.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

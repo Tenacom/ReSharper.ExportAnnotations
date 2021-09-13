@@ -5,6 +5,9 @@ artifacts/
 .config/
 .coverage/
 
+# Local build logs
+logs/
+
 # Visual Studio
 **/bin/
 **/obj/

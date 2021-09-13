@@ -16,7 +16,7 @@
   <PropertyGroup>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Tenacom/ReSharper.ExportAnnotations</RepositoryUrl>
-    <PackageReleaseNotes>Release notes are available at $(RepositoryUrl)/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Release notes are available at $(RepositoryUrl)/blob/main/CHANGELOG.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Common build options -->

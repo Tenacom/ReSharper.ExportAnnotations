@@ -32,6 +32,8 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <CLSCompliant>true</CLSCompliant>
     <ComVisible>false</ComVisible>
+    <UseJetBrainsAnnotations>true</UseJetBrainsAnnotations>
+    <GenerateThisAssemblyClass>true</GenerateThisAssemblyClass>
   </PropertyGroup>
 
   <!-- Package Central Version Management -->
@@ -40,7 +42,6 @@
   </PropertyGroup>
 
   <!-- SourceLink -->
-
   <PropertyGroup>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

@@ -1,60 +1,59 @@
-﻿// -----------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------
 // Copyright (C) Riccardo De Agostini and Tenacom. All rights reserved.
 // Licensed under the MIT license.
-// See LICENSE file in the project root for full license information.
+// See the LICENSE file in the project root for full license information.
 //
 // Part of this file may be third-party code, distributed under a compatible license.
-// See THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
-// -----------------------------------------------------------------------------------
+// See the THIRD-PARTY-NOTICES file in the project root for third-party copyright notices.
+// ---------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Mono.Cecil;
 
-namespace ReSharper.ExportAnnotations.Internal
+namespace ReSharper.ExportAnnotations.Internal;
+
+internal sealed class MyAssemblyResolver : DefaultAssemblyResolver
 {
-    internal sealed class MyAssemblyResolver : DefaultAssemblyResolver
+    private static readonly IEnumerable<string> WindowsRuntimeExtensions = new[] { ".winmd", ".dll" };
+    private static readonly IEnumerable<string> NonWindowsRuntimeExtensions = new[] { ".exe", ".dll" };
+
+    private readonly IReadOnlyList<string> _referencedLibPaths;
+
+    public MyAssemblyResolver(string dllPath, IEnumerable<string> referencedLibPaths)
     {
-        private static readonly IEnumerable<string> WindowsRuntimeExtensions = new[] { ".winmd", ".dll" };
-        private static readonly IEnumerable<string> NonWindowsRuntimeExtensions = new[] { ".exe", ".dll" };
+        AddSearchDirectory(Path.GetDirectoryName(dllPath));
 
-        private readonly IReadOnlyList<string> _referencedLibPaths;
+        _referencedLibPaths = referencedLibPaths.ToArray();
+    }
 
-        public MyAssemblyResolver(string dllPath, IEnumerable<string> referencedLibPaths)
+    public override AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters)
+    {
+        var extensions = name.IsWindowsRuntime ? WindowsRuntimeExtensions : NonWindowsRuntimeExtensions;
+        var paths = _referencedLibPaths
+            .Where(File.Exists)
+            .Where(p => Path.GetFileNameWithoutExtension(p) == name.Name)
+            .Where(p => extensions.Contains(Path.GetExtension(p)));
+
+        foreach (var path in paths)
         {
-            AddSearchDirectory(Path.GetDirectoryName(dllPath));
-
-            _referencedLibPaths = referencedLibPaths.ToArray();
-        }
-
-        public override AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters)
-        {
-            var extensions = name.IsWindowsRuntime ? WindowsRuntimeExtensions : NonWindowsRuntimeExtensions;
-            var paths = _referencedLibPaths
-                .Where(File.Exists)
-                .Where(p => Path.GetFileNameWithoutExtension(p) == name.Name)
-                .Where(p => extensions.Contains(Path.GetExtension(p)));
-
-            foreach (var path in paths)
+            try
             {
-                try
-                {
-                    return GetAssembly(path, parameters);
-                }
-                catch (System.BadImageFormatException)
-                {
-                }
+                return GetAssembly(path, parameters);
             }
-
-            return base.Resolve(name, parameters);
+            catch (System.BadImageFormatException)
+            {
+            }
         }
 
-        private AssemblyDefinition GetAssembly(string file, ReaderParameters parameters)
-        {
-            parameters.AssemblyResolver ??= this;
+        return base.Resolve(name, parameters);
+    }
 
-            return ModuleDefinition.ReadModule(file, parameters).Assembly;
-        }
+    private AssemblyDefinition GetAssembly(string file, ReaderParameters parameters)
+    {
+        parameters.AssemblyResolver ??= this;
+
+        return ModuleDefinition.ReadModule(file, parameters).Assembly;
     }
 }

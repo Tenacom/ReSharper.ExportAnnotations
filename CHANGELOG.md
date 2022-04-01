@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes to existing features
 
+- **POTENTIALLY BREAKING CHANGE:** Support has been dropped for .NET Framework versions prior to 4.7.2, all versions of .NET Core (.NET 5 and newer is of course supported), and MSBuild versions prior to 16.8 (Visual Studio 2019 v16.8, .NET SDK v5.0).
+
 ### Bugs fixed in this release
 
 ### Known problems introduced by this release

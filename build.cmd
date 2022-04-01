@@ -1,6 +1,10 @@
 @echo off & setlocal enableextensions
 pushd "%~dp0"
 
+:: .NET environment variables
+set DOTNET_NOLOGO=true
+set DOTNET_CLI_UI_LANGUAGE=en-US
+
 :: Configuration values
 set _SOLUTION_NAME=
 set _DEFAULT_TASK=
@@ -25,7 +29,7 @@ if "%_DEFAULT_TASK%"=="" set _DEFAULT_TASK=All
 if "%_MSBUILD_CONFIGURATION%"=="" set _MSBUILD_CONFIGURATION=Release
 if "%_MSBUILD_VERBOSITY%"=="" set _MSBUILD_VERBOSITY=normal
 if "%_MSBUILD_OPTIONS%"=="" set _MSBUILD_OPTIONS=
-if "%_VS_MSBUILD_EXE%"=="" set _VS_MSBUILD_EXE="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe"
+if "%_VS_MSBUILD_EXE%"=="" set _VS_MSBUILD_EXE="%ProgramFiles%\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
 
 :: Use VisualStudio's MSBuild if specified
 if /I "%1" equ "VS" (
@@ -44,16 +48,16 @@ if /I "%_TASK%"=="Clean" (
     call :F_Run_Tasks Clean Tools
 ) else if /I "%_TASK%"=="Restore" (
     call :F_Run_Tasks Clean Tools Restore
-) else if /I "%_TASK%"=="Inspect" (
-    call :F_Run_Tasks Clean Tools Restore Inspect
 ) else if /I "%_TASK%"=="Build" (
-    call :F_Run_Tasks Clean Tools Restore Inspect Build
+    call :F_Run_Tasks Clean Tools Restore Build
+) else if /I "%_TASK%"=="Inspect" (
+    call :F_Run_Tasks Clean Tools Restore Build Inspect
 ) else if /I "%_TASK%"=="Test" (
-    call :F_Run_Tasks Clean Tools Restore Inspect Build Test
+    call :F_Run_Tasks Clean Tools Restore Build Inspect Test
 ) else if /I "%_TASK%"=="Pack" (
-    call :F_Run_Tasks Clean Tools Restore Inspect Build Test Pack
+    call :F_Run_Tasks Clean Tools Restore Build Inspect Test Pack
 ) else if /I "%_TASK%"=="All" (
-    call :F_Run_Tasks Clean Tools Restore Inspect Build Test Pack
+    call :F_Run_Tasks Clean Tools Restore Build Inspect Test Pack
 ) else (
     echo *** Unknown task '%_TASK%'
 )
@@ -98,8 +102,7 @@ exit /B 0
 
 :T_Inspect
 call :F_Label Inspect code with ReSharper tools
-call :F_Exec dotnet jb inspectcode "%_SOLUTION_FILE%" --output=%_LOGS_DIR%\inspect.log --format=Text
-call :F_Exec dotnet jb dupfinder "%_SOLUTION_FILE%" --output=%_LOGS_DIR%\dupfinder.log.xml --exclude="**\obj\**\*"
+call :F_Exec dotnet jb inspectcode "%_SOLUTION_FILE%" --no-build --output=%_LOGS_DIR%\inspect.log --format=Text
 exit /B %ERRORLEVEL%
 
 :T_VS_Inspect

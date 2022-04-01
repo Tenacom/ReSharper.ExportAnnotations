@@ -15,14 +15,19 @@
     <_ExportAnnotationsToolsDirectory>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\tools))\</_ExportAnnotationsToolsDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Full'">
+    <!--
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &lt; '16.0'">net46</_ExportAnnotationsTfm>
+    -->
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.0'">net472</_ExportAnnotationsTfm>
     <_ExportAnnotationsCommand>$(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)/ExportAnnotations.exe</_ExportAnnotationsCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
+    <!--
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &lt; '16.7'">netcoreapp2.1</_ExportAnnotationsTfm>
     <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.7' And '$(MSBuildVersion)' &lt; '16.8'">netcoreapp3.1</_ExportAnnotationsTfm>
-    <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.8'">net5.0</_ExportAnnotationsTfm>
+    -->
+    <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '16.8' And '$(MSBuildVersion)' &lt; '17.0'">net5.0</_ExportAnnotationsTfm>
+    <_ExportAnnotationsTfm Condition="'$(MSBuildVersion)' &gt;= '17.0'">net6.0</_ExportAnnotationsTfm>
     <_ExportAnnotationsCommand>dotnet $(_ExportAnnotationsToolsDirectory)$(_ExportAnnotationsTfm)/ExportAnnotations.dll</_ExportAnnotationsCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Mono'">
@@ -39,6 +44,10 @@
     <!-- Check for unsupported MSBuild runtime type. -->
     <Error Condition="'$(_ExportAnnotationsCommand)' == ''"
            Text="ReSharper.ExportAnnotations.Task: unsupported MSBuild runtime type '$(MSBuildRuntimeType)' (only Core, Full, and Mono are supported)" />
+
+    <!-- Check for unsupported MSBuild version. -->
+    <Error Condition="'$(MSBuildVersion)' &lt; '16.8'"
+           Text="ReSharper.ExportAnnotations.Task: unsupported MSBuild version '$(MSBuildVersion)' (version 16.8 or newer is required)" />
 
     <!-- Check for the presence of a PackageReference to the annotations package. -->
     <PropertyGroup>

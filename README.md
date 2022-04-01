@@ -54,9 +54,15 @@ Both C# and Visual Basic projects whose build output is either a `.dll` or a `.e
 
 Yes, as long as they use `PackageReference`.
 
-**Does it work when building with .NET CLI / Mono / VS Code / Visual Studio / Visual Studio for Mac?**
+**Does it work with my development toolchain?**
 
-Yes, yes, yes, yes, and most probably. If you encounter problems when using `ReSharper.ExportAnnotations.Task` with your preferred toolchain, please [open an issue](https://github.com/tenacom/ReSharper.ExportAnnotations/issues/new/choose) to let us know.
+The following versions of .NET SDK are supported: 5.x, 6.x
+
+The following versions of Visual Studio are supported: 2019 (v16.8+), 2022
+
+For other toolchains, check your MSBuild version: if it is 16.8 or 17.x, it is supported and should work.
+
+If you encounter problems when using `ReSharper.ExportAnnotations.Task` with a supported toolchain, please [open an issue](https://github.com/tenacom/ReSharper.ExportAnnotations/issues/new/choose) to let us know.
 
 **Is the assembly's signature preserved?**
 

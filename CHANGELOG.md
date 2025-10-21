@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bugs fixed in this release
 
+- https://github.com/Tenacom/ReSharper.ExportAnnotations/issues/75 - If .NET 6 is not installed, roll forward to run on newer major runtime versions.
+
 ### Known problems introduced by this release
 
 ## [1.4.0](https://github.com/tenacom/ReSharper.ExportAnnotations/releases/tag/1.4.0) (2022-04-01)

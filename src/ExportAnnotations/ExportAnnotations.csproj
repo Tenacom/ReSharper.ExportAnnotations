@@ -5,6 +5,7 @@
     <OutputType>Exe</OutputType>
     <Description>Command-line utility to export JetBrains annotations (and optionally strip them) from a compiled assembly.</Description>
     <IsPackable>false</IsPackable>
+    <RollForward>major</RollForward>
   </PropertyGroup>
 
   <ItemGroup>
